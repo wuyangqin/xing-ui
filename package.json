@@ -1,0 +1,23 @@
+{
+  "name": "xing-ui",
+  "version": "0.0.1",
+  "description": "这是一个基于VUE的UI框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wuyangqin/xing-ui.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "wuyangqin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wuyangqin/xing-ui/issues"
+  },
+  "homepage": "https://github.com/wuyangqin/xing-ui#readme"
+}
