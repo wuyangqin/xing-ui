@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/wuyangqin/xing-ui/issues"
   },
-  "homepage": "https://github.com/wuyangqin/xing-ui#readme"
+  "homepage": "https://github.com/wuyangqin/xing-ui#readme",
+  "dependencies": {
+    "vue": "^2.6.12"
+  }
 }
