@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./node_modules/vue/dist/vue.min.js"></script>
+  <script src="./button.js"></script>
+  <style>
+    *{ margin: 0; padding: 0; box-sizing: border-box }
+    :root {
+      --main-theme-color: #2DD39C ;
+      --main-hover-color: #4DE9B7;
+      --main-active-color: #4DC19C;
+      --button-height: 32px;
+      --font-size: 14px;
+      --button-bg: var(--main-theme-color);
+      --button-active-bg: var(--main-active-color);
+      --button-hover-bg: var(--main-hover-color);
+      --color: #333;
+      --border-radius: 4px
+    }
+  </style>
+  <style>
+    .x-button {
+      padding: 0 1em;
+      font-size: var(--font-size);
+      height: var(--button-height);
+      border-radius: var(--border-radius);
+      background: var(--main-theme-color);
+      border: none;
+    }
+    .x-button:hover {
+      background: var(--main-hover-color);
+    }
+    .x-button:active {
+      background: var(--main-active-color);
+    }
+    .x-button:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <x-button></x-button>
+  </div>
+  <script>
+    new Vue ({
+      el: '#app'
+    })
+  </script>
+</body>
+</html>
