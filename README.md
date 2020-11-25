@@ -7,3 +7,7 @@
 ## 快速上手
 
 请在body元素加入属性 box-sizing: border-box
+
+## 组件
+### 按钮
+

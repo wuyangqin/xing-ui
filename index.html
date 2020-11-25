@@ -6,10 +6,15 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <style>
-    *{ margin: 0; padding: 0; box-sizing: border-box }
+  <style lang="less">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
     :root {
-      --main-theme-color: #2DD39C ;
+      --main-theme-color: #2DD39C;
       --main-hover-color: #4DE9B7;
       --main-active-color: #4DC19C;
       --button-height: 32px;
@@ -21,14 +26,23 @@
       --border-radius: 4px
     }
   </style>
-  <style>
+  <style lang="less">
   </style>
 </head>
 <body>
-  <div id="app">
-    <x-button></x-button>
-  </div>
-  <script src="./src/app.js">
-  </script>
+<div id="app">
+  <x-button icon="setting">
+    按钮
+  </x-button>
+  <x-button>
+    按钮
+  </x-button>
+  <x-button icon="download" icon-position="right">
+    按钮
+  </x-button>
+</div>
+<script src="./src/app.js">
+</script>
+<script src="//at.alicdn.com/t/font_2229561_274ku41d9gf.js"></script>
 </body>
 </html>
