@@ -1,8 +1,6 @@
 <template>
   <button class="x-button" :class="{[`icon-${iconPosition}`]:true}">
-    <svg v-if="icon" class="icon">
-      <use :xlink:href="`#x-${icon}`"></use>
-    </svg>
+    <x-icon class="icon" v-if="icon" :name="icon"></x-icon>
     <div class="content">
       <slot></slot>
     </div>
@@ -46,12 +44,6 @@ export default {
   &:hover { background: var(--main-hover-color); }
   &:active { background: var(--main-active-color); }
   &:focus { outline: none; }
-  .icon {
-    width: 1em;
-    height: 1em;
-    fill:currentColor;
-    color: #fff;
-  }
   > .icon { order: 1; margin-right: .3em;}
   > .content { order: 2; }
   &.icon-right {
