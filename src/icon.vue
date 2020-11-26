@@ -1,5 +1,6 @@
 <template>
-  <svg class="x-icon">
+<!--  <span :class="`xx-icon x-${name}`"></span>-->
+  <svg class="xx-icon">
     <use :xlink:href="`#x-${name}`"></use>
   </svg>
 </template>
@@ -18,9 +19,11 @@ export default {
 </script>
 
 <style lang="less">
-.x-icon {
+.xx-icon {
   width: 1em;
   height: 1em;
+  //color: #fff;
+  //vertical-align: middle;
   fill:currentColor;
   color: #fff;
 }
