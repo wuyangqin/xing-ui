@@ -1,7 +1,7 @@
 <template>
-  <button class="x-button" :class="{[`icon-${iconPosition}`]:true}">
-    <x-icon class="icon" v-if="icon" :name="icon"></x-icon>
-    <x-icon class="icon loading" v-if="icon" name="loading"></x-icon>
+  <button class="x-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
+    <x-icon class="icon" v-if="icon && !loading" :name="icon"></x-icon>
+    <x-icon class="icon loading" v-if="loading" name="loading"></x-icon>
     <span class="content">
       <slot></slot>
     </span>
@@ -22,6 +22,10 @@ export default {
       validator (value) {
         return value === 'left' || value === 'right'
       }
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

@@ -6,5 +6,10 @@ Vue.component('x-button', XButton)
 Vue.component('x-icon', XIcon)
 
 new Vue ({
-  el: '#app'
+  el: '#app',
+  data() {
+    return {
+      loading1: false
+    }
+  },
 })
