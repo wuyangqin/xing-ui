@@ -23,10 +23,14 @@
       --button-active-bg: var(--main-active-color);
       --button-hover-bg: var(--main-hover-color);
       --color: #333;
-      --border-radius: 4px
+      --border-radius: 4px;
+      --border: 1px solid #eee;
     }
   </style>
   <style lang="less">
+    body {
+      margin: 10px;
+    }
   </style>
 </head>
 <body>
@@ -40,6 +44,10 @@
   <x-button icon="download" icon-position="right">
     按钮
   </x-button>
+  <x-button-group>
+    <x-button icon="left">上一页</x-button>
+    <x-button icon="right" icon-position="right">下一页</x-button>
+  </x-button-group>
 </div>
 <script src="./src/app.js">
 </script>
