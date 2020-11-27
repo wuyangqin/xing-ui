@@ -50,7 +50,7 @@ export default {
   border-radius: var(--border-radius); background: var(--main-theme-color); border: none; color: #fff;
   display: inline-flex; justify-content: center; align-items: center;
   vertical-align: middle;
-  &:hover { background: var(--main-hover-color); }
+  &:hover { background: var(--main-hover-color);}
   &:active { background: var(--main-active-color); }
   &:focus { outline: none; }
   //.icon {
