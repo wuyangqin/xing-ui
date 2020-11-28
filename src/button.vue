@@ -9,8 +9,11 @@
 </template>
 
 <script>
+import XIcon from './icon'
+
 export default {
   components: {
+    XIcon
   },
   props: {
     icon: {
