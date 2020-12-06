@@ -1,6 +1,6 @@
 <template>
   <div class="x-input-wrapper">
-    <input type="text">
+    <input :value="value" type="text" :disabled="disabled" :readonly="readonly" :class="{disabled, readonly}">
   </div>
 </template>
 
@@ -12,6 +12,14 @@ export default {
     value: {
       type: String,
       default: ''
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -29,6 +37,7 @@ export default {
     transition: all .3s;
     text-indent: 1em;
     font-size: inherit;
+    line-height: @item-height-regular;
     &:hover {
       border: @input-hover-border;
     }
@@ -36,6 +45,16 @@ export default {
       box-shadow: @input-focus;
       border: @input-hover-border;
       outline: none;
+    }
+    &.disabled, &.readonly {
+      color: @gray-5;
+      background: @gray-1;
+    }
+    &.disabled {
+      cursor: not-allowed;
+      &:hover {
+        border: @input-border;
+      }
     }
   }
 }
