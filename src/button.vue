@@ -43,18 +43,19 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+@import url('./css/xing-ui');
 @keyframes spin {
   0% { transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
 }
 .x-button {
-  padding: 0 1em; font-size: var(--font-size); height: var(--button-height);
-  border-radius: var(--border-radius); background: var(--main-theme-color); border: none; color: #fff;
+  padding: 0 1em; font-size: @font-size-md; height: @item-height-regular;
+  border-radius: @border-radius; background: @main-theme-color; border: none; color: #fff;
   display: inline-flex; justify-content: center; align-items: center;
   vertical-align: middle;
-  &:hover { background: var(--main-hover-color);}
-  &:active { background: var(--main-active-color); }
+  &:hover { background: @main-hover-color;}
+  &:active { background: @main-active-color; }
   &:focus { outline: none; }
   //.icon {
   //  fill:currentColor;
