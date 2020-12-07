@@ -1,12 +1,19 @@
 <template>
-  <div class="x-input-wrapper">
-    <input :value="value" type="text" :disabled="disabled" :readonly="readonly" :class="{disabled, readonly}">
+  <div class="x-input-wrapper" :class="{error}">
+    <input :value="value" type="text" :disabled="disabled" :readonly="readonly" :class="{disabled, readonly}"/>
+    <template v-if="error">
+      <x-icon name="warning" class="icon-error"></x-icon>
+      <span class="error-message">{{error}}</span>
+    </template>
   </div>
 </template>
 
 <script>
+import XIcon from './icon'
+
 export default {
   components: {
+    XIcon
   },
   props: {
     value: {
@@ -20,6 +27,10 @@ export default {
     readonly: {
       type: Boolean,
       default: false
+    },
+    error: {
+      type: String,
+      default: ''
     }
   }
 }
@@ -55,6 +66,15 @@ export default {
       &:hover {
         border: @input-border;
       }
+    }
+  }
+  &.error {
+    > input {
+      border-color: @red;
+    }
+    .icon-error {
+      width: 1.2em;
+      height: 1.2em;
     }
   }
 }
