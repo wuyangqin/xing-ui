@@ -43,6 +43,7 @@
   <div style="margin: 10px">
     <x-input value="234" error="请输入"></x-input>
     <x-input value="234" @change="inputChange($event)"></x-input>
+    <x-input v-model="value" @input="inputEvent($event)"></x-input> {{value}}
   </div>
   <div>
     <x-button icon="setting" :loading="loading1" @click="loading1 = !loading1">

@@ -60,15 +60,20 @@ describe ('Input', () => {
     afterEach (() => {
       vm.$destroy()
     })
-    it ('支持 change input focus blur', () => {
+    it ('支持 change input focus blur事件', () => {
       ['change', 'input', 'focus', 'blur'].forEach(eventName => {
-        vm = new Constructor().$mount()
+        vm = new Constructor({}).$mount()
         const callback = sinon.fake(); // 声明一个callback 是sinon提供的假函数
         let event = new Event(eventName);
         vm.$on(eventName, callback)
+        Object.defineProperty(
+          event, 'target', {
+            value: {value: 'hi'}, enumerable: true
+          }
+        )
         let inputElement = vm.$el.querySelector('input')
         inputElement.dispatchEvent(event)
-        expect(callback).to.have.been.calledWith(event)
+        expect(callback).to.have.been.calledWith('hi')
       })
     })
   })
