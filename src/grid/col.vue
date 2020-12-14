@@ -1,8 +1,6 @@
 <template>
-  <div class="col" :class="[span && `col-${span}`]" :style="{paddingLeft: gutter/2 + 'px', paddingRight: gutter/2 + 'px'}">
-    <div style="border: 1px solid #ccc;">
-      <slot></slot>
-    </div>
+  <div class="col" :class="colClasses" :style="colStyle">
+    <slot></slot>
   </div>
 </template>
 
@@ -10,6 +8,10 @@
 export default {
   props: {
     span: {
+      type: [String, Number],
+      default: ''
+    },
+    offset: {
       type: [String, Number],
       default: ''
     }
@@ -20,18 +22,19 @@ export default {
     }
   },
   computed: {
+    colClasses () {
+      let { span, offset } = this
+      return [
+        span && `col-${span}`,
+        offset && `offset-${offset}`
+      ]
+    },
     colStyle () {
       return {
         paddingLeft: this.gutter / 2 + 'px',
         paddingRight: this.gutter / 2 + 'px',
       }
     }
-  },
-  mounted () {
-    this.$nextTick(()=> {
-
-    // console.log(this)
-    })
   }
 }
 </script>
@@ -55,4 +58,13 @@ export default {
   .col-loop(@index - 1); /* the next iteration's call - final-expression*/
 }
 .col-loop(24);
+.offset-loop(@index) when (@index > 0) { /* recursive mixin with guard expression - condition */
+  /* the statement */
+  .offset-@{index} {
+    margin-left: (@index / 24) * 100%;
+  }
+  /* end of the statement */
+  .offset-loop(@index - 1); /* the next iteration's call - final-expression*/
+}
+.offset-loop(24);
 </style>
