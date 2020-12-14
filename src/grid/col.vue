@@ -1,6 +1,8 @@
 <template>
-  <div class="col" :class="[`col-${span}`]">
-    <slot></slot>
+  <div class="col" :class="[span && `col-${span}`]" :style="{paddingLeft: gutter/2 + 'px', paddingRight: gutter/2 + 'px'}">
+    <div style="border: 1px solid #ccc;">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -12,7 +14,24 @@ export default {
       default: ''
     }
   },
-  components: {
+  data () {
+    return {
+      gutter: 0
+    }
+  },
+  computed: {
+    colStyle () {
+      return {
+        paddingLeft: this.gutter / 2 + 'px',
+        paddingRight: this.gutter / 2 + 'px',
+      }
+    }
+  },
+  mounted () {
+    this.$nextTick(()=> {
+
+    // console.log(this)
+    })
   }
 }
 </script>
@@ -21,10 +40,11 @@ export default {
 @import url('../css/xing-ui');
 .col {
   height: 40px;
-  background: @gray-2;
+  //background: @gray-2;
+  //border: 1px solid @gray-4;
   border-radius: 4px;
   width: 50%;
-  border: 1px solid @gray-4;
+  box-sizing: border-box;
 }
 .col-loop(@index) when (@index > 0) { /* recursive mixin with guard expression - condition */
   /* the statement */
