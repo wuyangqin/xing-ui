@@ -25,7 +25,6 @@ export default {
       type: [String, Number],
       default: ''
     },
-    phone: { type: Object, validator },
     ipad: { type: Object, validator },
     narrowPc: { type: Object, validator },
     pc: { type: Object, validator },
@@ -53,11 +52,10 @@ export default {
   },
   computed: {
     colClasses () {
-      let { span, offset, phone, ipad, narrowPc, pc, widePc } = this
+      let { span, offset, ipad, narrowPc, pc, widePc } = this
       let createClass = this.createClass
       return [
         ...createClass({ span, offset }),
-        ...createClass(phone, 'phone-'),
         ...createClass(ipad, 'ipad-'),
         ...createClass(narrowPc, 'narrow-pc-'),
         ...createClass(pc, 'pc-'),
@@ -90,31 +88,14 @@ export default {
   .offset-loop(@index - 1);
 }
 .offset-loop(24);
-@media (max-width: 576px) {
-  .col-phone-loop(@index) when (@index > 0) {
-    .col-phone-@{index} { width: (@index / 24) * 100%; }
-    .col-phone-loop(@index - 1);
-  }
-  .col-phone-loop(24);
-  .offset-phone-loop(@index) when (@index > 0) {
-    .offset-phone-@{index} { margin-left: (@index / 24) * 100%; }
-    .offset-phone-loop(@index - 1);
-  }
-  .offset-phone-loop(24)
-}
-@media (min-width: 576px) and (max-width: 768px) {
-  .col-ipad-loop(@index) when (@index > 0) {
-    .col-ipad-@{index} { width: (@index / 24) * 100%; }
-    .col-ipad-loop(@index - 1);
-  }
-  .col-ipad-loop(24);
+@media (min-width: 577px) {
   .offset-ipad-loop(@index) when (@index > 0) {
     .offset-ipad-@{index} { margin-left: (@index / 24) * 100%; }
     .offset-ipad-loop(@index - 1);
   }
   .offset-ipad-loop(24)
 }
-@media (min-width: 768px) and (max-width: 992px) {
+@media (min-width: 769px) {
   .col-narrow-pc-loop(@index) when (@index > 0) {
     .col-narrow-pc-@{index} { width: (@index / 24) * 100%; }
     .col-narrow-pc-loop(@index - 1);
@@ -126,7 +107,7 @@ export default {
   }
   .offset-narrow-pc-loop(24)
 }
-@media (min-width: 992px) and (max-width: 1200px) {
+@media (min-width: 993px) {
   .col-pc-loop(@index) when (@index > 0) {
     .col-pc-@{index} { width: (@index / 24) * 100%; }
     .col-pc-loop(@index - 1);
