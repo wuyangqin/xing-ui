@@ -32,53 +32,36 @@
       margin: 10px;
     }
   </style>
+  <style lang="less">
+    .text-box {
+      background: #eee;
+      border: 1px solid #969799;
+      height: 100px;
+    }
+  </style>
 </head>
 <body>
 <div id="app">
-  <x-row gutter="20">
-    <x-col span="2">1</x-col>
-    <x-col span="22">2</x-col>
-  </x-row>
-  <x-row align="right">
-    <x-col>1</x-col>
-    <x-col>2</x-col>
-    <x-col>2</x-col>
-    <x-col>2</x-col>
-  </x-row>
   <x-row>
-    <x-col :span="2" :phone="{ span: 11}">1</x-col>
-    <x-col :span="20":offset="2" :phone="{ span: 9, offset:2 }">2</x-col>
+    <x-col :span="24" :ipad="{ span: 12 }"  :pc="{ span: 8 }">
+      <div class="text-box"></div>
+    </x-col>
+    <x-col :span="22" :offset="2" :ipad="{ span: 10, offset:2 }" :pc="{ span: 8 }">
+      <div class="text-box"></div>
+    </x-col>
+    <x-col :span="22" :offset="2" :ipad="{ span: 10, offset:2 }" :pc="{ span: 8 }">
+      <div class="text-box"></div>
+    </x-col>
+    <x-col :span="22" :offset="2" :ipad="{ span: 10, offset:2 }" :pc="{ span: 8 }">
+      <div class="text-box"></div>
+    </x-col>
+    <x-col :span="22" :offset="2" :ipad="{ span: 10, offset:2 }" :pc="{ span: 8 }">
+      <div class="text-box"></div>
+    </x-col>
+    <x-col :span="22" :offset="2" :ipad="{ span: 10, offset:2 }" :pc="{ span: 6, offset: 2 }">
+      <div class="text-box"></div>
+    </x-col>
   </x-row>
-  <x-row :gutter="30">
-    <x-col :span="4">1</x-col>
-    <x-col :span="20">2</x-col>
-  </x-row>
-  <div style="margin: 10px">
-    <x-input value="123"></x-input>
-    <x-input value="234" disabled></x-input>
-    <x-input value="234" readonly></x-input>
-  </div>
-  <div style="margin: 10px">
-    <x-input value="234" error="请输入"></x-input>
-    <x-input value="234" @change="inputChange($event)"></x-input>
-    <x-input v-model="value" @input="inputEvent($event)"></x-input> {{value}}
-  </div>
-  <div>
-    <x-button icon="setting" :loading="loading1" @click="loading1 = !loading1">
-      按钮
-    </x-button>
-    <x-button :loading="true">
-      按钮
-    </x-button>
-    <x-button icon="download" icon-position="right">
-      按钮
-    </x-button>
-    <x-button-group>
-      <x-button icon="left">上一页</x-button>
-      <x-button>更多</x-button>
-      <x-button icon="right" icon-position="right">下一页</x-button>
-    </x-button-group>
-  </div>
 </div>
 <script src="./src/app.js">
 </script>
