@@ -29,40 +29,27 @@
   </style>
   <style lang="less">
     body {
-      margin: 10px;
+      margin: 0px;
     }
   </style>
   <style lang="less">
     .text-box {
       background: #eee;
       border: 1px solid #969799;
-      height: 100px;
+      min-height: 100px;
     }
   </style>
 </head>
 <body>
 <div id="app">
-  <x-row align="right">
-    <x-col :span="24" :ipad="{ span: 12 }"  :pc="{ span: 4 }" :narrow-pc="{span: 8}" :wide-pc="{span: 2, offset: 2}">
-      <div class="text-box"></div>
-    </x-col>
-    <x-col :span="24" :ipad="{ span: 12 }"  :pc="{ span: 4 }" :narrow-pc="{span: 8}" :wide-pc="{span: 2, offset: 2}">
-      <div class="text-box"></div>
-    </x-col>
-    <x-col :span="24" :ipad="{ span: 12 }"  :pc="{ span: 4 }" :narrow-pc="{span: 8}" :wide-pc="{span: 2, offset: 2}">
-      <div class="text-box"></div>
-    </x-col>
-    <x-col :span="24" :ipad="{ span: 12 }"  :pc="{ span: 4 }" :narrow-pc="{span: 8}" :wide-pc="{span: 2, offset: 2}">
-      <div class="text-box"></div>
-    </x-col>
-    <x-col :span="24" :ipad="{ span: 12 }"  :pc="{ span: 4 }" :narrow-pc="{span: 8}" :wide-pc="{span: 2, offset: 2}">
-      <div class="text-box"></div>
-    </x-col>
-    <x-col :span="24" :ipad="{ span: 12 }"  :pc="{ span: 4 }" :narrow-pc="{span: 8}" :wide-pc="{span: 2, offset: 2}">
-      <div class="text-box"></div>
-    </x-col>
-
-  </x-row>
+  <x-container style="border: 1px solid red; height: 100vh">
+      <x-slider class="text-box">slider</x-slider>
+    <x-container>
+    <x-header class="text-box">header</x-header>
+      <x-main class="text-box">main</x-main>
+    <x-footer class="text-box">footer</x-footer>
+    </x-container>
+  </x-container>
 </div>
 <script src="./src/app.js">
 </script>
