@@ -1,16 +1,16 @@
 <template>
-  <div class="container-slider">
+  <div class="container-aside">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'XSlider'
+  name: 'XAside'
 }
 </script>
 
 <style scoped lang="less">
-.container-slider {
+.container-aside {
 }
 </style>

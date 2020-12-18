@@ -9,7 +9,7 @@ import Container from './layout/container'
 import Header from './layout/header'
 import Footer from './layout/footer'
 import Main from './layout/main'
-import Slider from './layout/slider'
+import Aside from './layout/aside'
 
 Vue.component('x-button', Button)
 Vue.component('x-button-group', ButtonGroup)
@@ -21,7 +21,7 @@ Vue.component('x-container', Container)
 Vue.component('x-header', Header)
 Vue.component('x-footer', Footer)
 Vue.component('x-main', Main)
-Vue.component('x-slider', Slider)
+Vue.component('x-aside', Aside)
 
 new Vue ({
   el: '#app',

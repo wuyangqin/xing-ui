@@ -20,13 +20,21 @@ export default {
   data() {
     return {
       containerClasses: {
-        ['has-slider']: false
+        ['has-slider']: false,
+        vertical: this.direction === 'vertical',
+        horizontal: this.direction === 'horizontal',
       }
     }
   },
   mounted () {
     this.$children.forEach(vm => {
-      if (vm.$options.name === 'XSlider') {
+      let childName = vm.$options.name
+      let childVm = ['XAside', 'XHeader', 'XFooter', 'XMain', 'XContainer']
+      if (!childVm.includes(childName)) {
+        console.error('<x-container>组件不能包含<x-container>,<x-header>,<x-footer>,<x-main>,<x-slider>以外的组件！')
+        return
+      }
+      if (childName === 'XAside') {
         this.containerClasses['has-slider'] = true
       }
     })
@@ -39,8 +47,9 @@ export default {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  &.has-slider {
-    flex-direction: row;
-  }
+  &.has-slider { flex-direction: row;}
+  &.horizontal { flex-direction: row; }
+  &.visibility { flex-direction: column; }
+;
 }
 </style>
