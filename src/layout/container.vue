@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       containerClasses: {
-        ['has-slider']: false,
+        ['has-aside']: false,
         vertical: this.direction === 'vertical',
         horizontal: this.direction === 'horizontal',
       }
@@ -31,11 +31,11 @@ export default {
       let childName = vm.$options.name
       let childVm = ['XAside', 'XHeader', 'XFooter', 'XMain', 'XContainer']
       if (!childVm.includes(childName)) {
-        this.xError('<x-container>组件不能包含<x-container>,<x-header>,<x-footer>,<x-main>,<x-slider>以外的组件！')
+        this.xError('<x-container>组件不能包含<x-container>,<x-header>,<x-footer>,<x-main>,<x-aside>以外的组件！')
         return
       }
       if (childName === 'XAside') {
-        this.containerClasses['has-slider'] = true
+        this.containerClasses['has-aside'] = true
       }
     })
   }
@@ -47,7 +47,7 @@ export default {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  &.has-slider { flex-direction: row;}
+  &.has-aside { flex-direction: row;}
   &.horizontal { flex-direction: row; }
   &.visibility { flex-direction: column; }
 }
