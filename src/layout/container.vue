@@ -31,7 +31,7 @@ export default {
       let childName = vm.$options.name
       let childVm = ['XAside', 'XHeader', 'XFooter', 'XMain', 'XContainer']
       if (!childVm.includes(childName)) {
-        console.error('<x-container>组件不能包含<x-container>,<x-header>,<x-footer>,<x-main>,<x-slider>以外的组件！')
+        this.xError('<x-container>组件不能包含<x-container>,<x-header>,<x-footer>,<x-main>,<x-slider>以外的组件！')
         return
       }
       if (childName === 'XAside') {
@@ -50,6 +50,5 @@ export default {
   &.has-slider { flex-direction: row;}
   &.horizontal { flex-direction: row; }
   &.visibility { flex-direction: column; }
-;
 }
 </style>

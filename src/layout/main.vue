@@ -5,8 +5,14 @@
 </template>
 
 <script>
+import layoutMixins from "./layoutMixins.js"
+
 export default {
-  name: 'XMain'
+  name: 'XMain',
+  mixins: [layoutMixins],
+  mounted () {
+    this.fatherDetermine('x-main')
+  }
 }
 </script>
 

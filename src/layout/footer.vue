@@ -1,15 +1,20 @@
 <template>
-  <div class="container-footer">
+  <div class="container-footer" :style="{height: height + 'px'}">
     <slot></slot>
   </div>
 </template>
 
 <script>
+import layoutMixins from "./layoutMixins.js"
+
 export default {
-  name: 'XFooter'
+  name: 'XFooter',
+  mixins: [layoutMixins],
+  mounted () {
+    this.fatherDetermine('x-footer')
+  }
 }
 </script>
 
 <style scoped lang="less">
-.container-footer {}
 </style>

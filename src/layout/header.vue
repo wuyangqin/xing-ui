@@ -1,15 +1,20 @@
 <template>
-  <div class="container-header">
+  <div class="container-header" :style="{height: height + 'px'}">
     <slot></slot>
   </div>
 </template>
 
 <script>
+import layoutMixins from "./layoutMixins.js"
+
 export default {
-  name: 'XHeader'
+  name: 'XHeader',
+  mixins: [layoutMixins],
+  mounted () {
+    this.fatherDetermine()
+  }
 }
 </script>
 
 <style scoped lang="less">
-.container-header {}
 </style>
