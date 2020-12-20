@@ -12,20 +12,6 @@
       padding: 0;
       box-sizing: border-box
     }
-
-    :root {
-      --main-theme-color: #2DD39C;
-      --main-hover-color: #4DE9B7;
-      --main-active-color: #4DC19C;
-      --button-height: 32px;
-      --font-size: 14px;
-      --button-bg: var(--main-theme-color);
-      --button-active-bg: var(--main-active-color);
-      --button-hover-bg: var(--main-hover-color);
-      --color: #333;
-      --border-radius: 4px;
-      --border: 1px solid #eee;
-    }
   </style>
   <style lang="less">
     body {
@@ -42,7 +28,7 @@
 </head>
 <body>
 <div id="app">
-  <x-button loading></x-button>
+  <x-button @click="showToast">点我</x-button>
 </div>
 <script src="./src/app.js">
 </script>

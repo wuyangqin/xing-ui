@@ -11,6 +11,7 @@ import Footer from './layout/footer'
 import Main from './layout/main'
 import Aside from './layout/aside'
 import actions from './common/action'
+import  toast  from './plugin/toast'
 
 Vue.component('x-button', Button)
 Vue.component('x-button-group', ButtonGroup)
@@ -27,6 +28,8 @@ Vue.component('x-aside', Aside)
 Vue.prototype.xWarning = actions.xWarning
 Vue.prototype.xError = actions.xError
 
+Vue.use(toast)
+
 new Vue ({
   el: '#app',
   data() {
@@ -36,5 +39,11 @@ new Vue ({
     }
   },
   methods: {
+    showToast () {
+      // this.$toast({
+      //   message: 'Loading'
+      // })
+      this.$toast('星星真可爱！')
+    }
   }
 })
