@@ -74,7 +74,7 @@ export default {
   }
   &.error {
     > input {
-      border-color: @red;
+      border-color: @warning;
     }
     .icon-error {
       width: 1.2em;
