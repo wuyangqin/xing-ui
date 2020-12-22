@@ -40,10 +40,16 @@ new Vue ({
   },
   methods: {
     showToast () {
-      // this.$toast({
-      //   message: 'Loading'
-      // })
-      this.$toast('星星真可爱！')
+      // this.$toast('星星真可爱！')
+      this.$toast({
+        message: '星星真可爱!',
+        duration: 0,
+        showClose: true,
+        closeButton: {
+          text: '知道了',
+          icon: 'close-fill'
+        }
+      })
     }
   }
 })

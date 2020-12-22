@@ -1,5 +1,5 @@
 <template>
-  <svg class="xx-icon">
+  <svg class="xx-icon" :style="{color}">
     <use :xlink:href="`#x-${name}`"></use>
   </svg>
 </template>
@@ -11,6 +11,10 @@ export default {
   },
   props: {
     name: {
+      type: String,
+      default: ''
+    },
+    color: {
       type: String,
       default: ''
     }
