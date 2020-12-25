@@ -42,12 +42,15 @@ new Vue ({
     showToast () {
       // this.$toast('星星真可爱！')
       this.$toast({
-        message: '星星真可爱!',
+        message: '星星真可爱',
+        // message: '<i>星星真可爱!</i>',
+        // enableHtml: true,
         duration: 0,
         showClose: true,
+        position: 'middle',
         closeButton: {
           text: '知道了',
-          icon: 'close-fill'
+          // icon: 'close'
         }
       })
     }
