@@ -79,11 +79,11 @@ export default {
         this.closeButton.onClose(this)
       }
     },
-    close () {
+    close (more) {
       setTimeout(() => {
         this.$el.remove()
         this.$destroy()
-      }, this.duration)
+      }, more ? 0 : this.duration)
     }
   }
 }
@@ -94,9 +94,21 @@ export default {
 .toast-wrapper {
   position: fixed;
   left: 50%;
-  &.toast-top { top: @padding-lg; transform: translateX(-50%); }
-  &.toast-bottom { bottom: @padding-lg; transform: translateX(-50%); }
-  &.toast-middle { top: 50%; transform: translate(-50%, -50%); }
+  &.toast-top {
+    top: @padding-lg;
+    transform: translateX(-50%);
+    .toast { animation: slide-down @animate-duration-regular; }
+  }
+  &.toast-bottom {
+    bottom: @padding-lg;
+    transform: translateX(-50%);
+    .toast { animation: slide-up @animate-duration-regular; }
+  }
+  &.toast-middle {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    .toast { animation: fade-in @animate-duration-regular; }
+  }
   .toast {
     background: @toast-bg;
     border-radius: @border-radius;

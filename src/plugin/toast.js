@@ -12,7 +12,7 @@ export default {
       }
       let propsData = getPropsData(typeof arguments[0], toastOptions)
       if (currentToast) {
-        currentToast.close()
+        currentToast.close(1)
       }
       currentToast = createToast(Vue, propsData)
     };
