@@ -45,13 +45,13 @@ new Vue ({
         message: `星星真可爱${parseInt(Math.random()*100)}`,
         // message: '<i>星星真可爱!</i>',
         // enableHtml: true,
-        // duration: 0,
+        duration: 0,
         showClose: true,
-        // position: 'bottom',
-        closeButton: {
-          text: '知道了',
-          // icon: 'close'
-        }
+        position: 'bottom',
+        // closeButton: {
+        //   text: '知道了',
+        //   // icon: 'close'
+        // }
       })
     }
   }
