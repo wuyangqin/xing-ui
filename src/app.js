@@ -12,6 +12,8 @@ import Main from './layout/main'
 import Aside from './layout/aside'
 import actions from './common/action'
 import  toast  from './plugin/toast'
+import  Tabs  from './tabs/tabs'
+import  Tab  from './tabs/tab'
 
 Vue.component('x-button', Button)
 Vue.component('x-button-group', ButtonGroup)
@@ -24,6 +26,8 @@ Vue.component('x-header', Header)
 Vue.component('x-footer', Footer)
 Vue.component('x-main', Main)
 Vue.component('x-aside', Aside)
+Vue.component('x-tabs', Tabs)
+Vue.component('x-tab', Tab)
 
 Vue.prototype.xWarning = actions.xWarning
 Vue.prototype.xError = actions.xError
@@ -45,13 +49,13 @@ new Vue ({
         message: `星星真可爱${parseInt(Math.random()*100)}`,
         // message: '<i>星星真可爱!</i>',
         // enableHtml: true,
-        // duration: 0,
+        duration: 0,
         showClose: true,
-        // position: 'bottom',
-        closeButton: {
-          text: '知道了',
-          // icon: 'close'
-        }
+        position: 'bottom',
+        // closeButton: {
+        //   text: '知道了',
+        //   // icon: 'close'
+        // }
       })
     }
   }
