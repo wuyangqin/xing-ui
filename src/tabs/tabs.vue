@@ -1,13 +1,19 @@
 <template>
   <div class="x-tabs">
-    <slot></slot>
+    <tab-nav></tab-nav>
+    <div class="x-tabs__content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script>
+import TabNav from './tabNav'
+
 export default {
   name: 'XTabs',
   components: {
+    TabNav
   },
   props: {
     value: {
@@ -19,6 +25,11 @@ export default {
       validator (value) {
         return ['top', 'left', 'right', 'bottom'].indexOf(value) > -1
       }
+    }
+  },
+  provide () {
+    return {
+      tabsBus: this.tabsBus
     }
   },
   computed: {
@@ -33,10 +44,10 @@ export default {
   },
   data () {
     return {
+      tabsBus: this
     }
   },
   mounted () {
-    console.log(this)
   },
   methods: {
   }

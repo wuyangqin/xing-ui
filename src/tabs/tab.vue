@@ -1,14 +1,19 @@
 <template>
-  <div class="x-tabs-tab">
+  <div class="x-tab__item"
+       v-show="tabsBus.selectTab === name">
     <slot></slot>
   </div>
 </template>
 
 <script>
+// import tabMixin from "./tabMixin";
+
 export default {
-  name: 'XTabsTab',
+  name: 'XTab',
+  // mixins: [tabMixin],
   components: {
   },
+  inject: ['tabsBus'],
   props: {
     label: {
       type: String,
@@ -26,6 +31,9 @@ export default {
   data () {
     return {
     }
+  },
+  created () {
+    this.tabsBus.$emit('getTabProps', this.$props)
   },
   methods: {
   }
