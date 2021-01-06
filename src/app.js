@@ -38,25 +38,11 @@ new Vue ({
   el: '#app',
   data() {
     return {
-      loading1: false,
-      value: ''
+      active: 'game'
     }
   },
   methods: {
-    showToast () {
-      // this.$toast('星星真可爱')
-      this.$toast({
-        message: `星星真可爱${parseInt(Math.random()*100)}`,
-        // message: '<i>星星真可爱!</i>',
-        // enableHtml: true,
-        duration: 0,
-        showClose: true,
-        position: 'bottom',
-        // closeButton: {
-        //   text: '知道了',
-        //   // icon: 'close'
-        // }
-      })
-    }
+    changeTab () {}
+    
   }
 })

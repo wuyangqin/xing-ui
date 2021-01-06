@@ -10,6 +10,18 @@ export default {
   components: {
   },
   props: {
+    label: {
+      type: String,
+      default: ''
+    },
+    name: {
+      type: [String, Number],
+      required: true
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     return {
