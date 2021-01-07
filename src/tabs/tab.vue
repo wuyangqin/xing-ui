@@ -6,11 +6,9 @@
 </template>
 
 <script>
-// import tabMixin from "./tabMixin";
 
 export default {
   name: 'XTab',
-  // mixins: [tabMixin],
   components: {
   },
   inject: ['tabsBus'],
@@ -28,14 +26,8 @@ export default {
       default: false
     }
   },
-  data () {
-    return {
-    }
-  },
   created () {
     this.tabsBus.$emit('getTabProps', this.$props)
-  },
-  methods: {
   }
 }
 </script>

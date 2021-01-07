@@ -5,7 +5,7 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>星UI</title>
   <style lang="less">
     * {
       margin: 0;
@@ -17,22 +17,26 @@
     body {
       margin: 0px;
     }
+    #app {
+      color: #323233;
+    }
   </style>
   <style lang="less">
-    .text-box {
-      background: #eee;
+    .source {
+      padding: 20px;
       border: 1px solid #969799;
-      //min-height: 100px;
     }
   </style>
 </head>
 <body>
 <div id="app">
-  <x-tabs v-model="active" tab-position="top" @change="changeTab">
-    <x-tab label="游戏" name="game">游戏内容</x-tab>
-    <x-tab label="音乐" name="music" disabled>音乐内容</x-tab>
-    <x-tab label="视频" name="video">视频内容</x-tab>
-  </x-tabs>
+  <div class="source">
+    <x-tabs v-model="active" tab-position="top" @change="changeTab">
+      <x-tab label="游戏" name="game">游戏内容</x-tab>
+      <x-tab label="音乐啊" name="music" disabled>音乐内容</x-tab>
+      <x-tab label="视频" name="video">视频内容</x-tab>
+    </x-tabs>
+  </div>
 </div>
 <script src="./src/app.js">
 </script>
