@@ -1,5 +1,5 @@
 <template>
-  <div class="x-tab__active-bar" :style="barStyle">
+  <div class="x-tab__active-bar" :class="tabNavWrapperClasses" :style="barStyle">
   </div>
 </template>
 
@@ -16,18 +16,27 @@ export default {
       type: Number,
       default: 0
     },
-    navLeft: {
+    translate: {
       type: Number,
       default: 0
     }
   },
   computed: {
     barStyle () {
-      let { width,navLeft } = this
-      return {
-        width: width + 'px',
-        left: navLeft + 'px'
-      }
+      let { width,translate, isVertical } = this
+      let { tabPosition } = this.tabsBus
+      let translateStyle = isVertical ?
+          {
+            top: translate + 'px',
+            width: 2 + 'px',
+            height: 40 + 'px',
+            left: tabPosition === 'left' ? '' : 0,
+            right: tabPosition === 'left' ? 0 : ''
+          } :
+          {
+            left: translate + 'px', width: width + 'px'
+          }
+      return translateStyle
     }
   },
   data () {
@@ -44,7 +53,6 @@ export default {
 .x-tab__active-bar {
   position: absolute;
   bottom: 0;
-  left: 0;
   z-index: 99;
   height: 2px;
   background: @main-theme-color;

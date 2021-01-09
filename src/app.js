@@ -42,7 +42,9 @@ new Vue ({
     }
   },
   methods: {
-    changeTab () {}
+    changeTab (e) {
+      console.log(e);
+    }
     
   }
 })

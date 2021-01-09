@@ -1,7 +1,7 @@
 <template>
   <div class="x-tab-nav__wrapper">
-    <div class="x-tab-nav__scroll flex-box">
-      <x-tab-bar :width="navWidth" :nav-left="navLeft"></x-tab-bar>
+    <div class="x-tab-nav__scroll flex-box" :class="tabNavWrapperClasses">
+      <x-tab-bar :width="navWidth" :translate="translate"></x-tab-bar>
       <div class="x-tab-nav__item"
            v-for="(nav, index) in tabPanes" :key="index"
            :ref="`tab-${nav.name}`"
@@ -27,7 +27,7 @@ export default {
   data () {
     return {
       navWidth: 0,
-      navLeft: 0
+      translate: 0
     }
   },
   mounted () {
@@ -47,12 +47,13 @@ export default {
     getNavWidth (index) {
       this.$nextTick(() => {
         let { selectTab } = this.tabsBus
-        let { tabPanes } = this
+        let { tabPanes, isVertical } = this
         let tabNames = tabPanes.map(item => item.name)
         let width = index === 0 || index === tabPanes.length - 1 ? 16 : 32
         let navTab = this.$refs[`tab-${selectTab}`][0]
         this.navWidth = navTab.getBoundingClientRect().width - width
-        this.navLeft = navTab.offsetLeft + ( index === 0 ? 0 : 16 )
+        if (isVertical) {}
+        this.translate = isVertical ? navTab.offsetTop : navTab.offsetLeft + ( index === 0 ? 0 : 16 )
       })
     },
     clickNavItem (nav, index) {
@@ -60,6 +61,7 @@ export default {
       if (disabled) { return }
       this.tabsBus.selectTab = name
       this.getNavWidth(index)
+      this.$emit('change', nav.name)
     }
   }
 }
@@ -68,6 +70,7 @@ export default {
 <style scoped lang="less">
 @import url('../css/xing-ui');
 .x-tab-nav__wrapper {
+  height: 100%;
   .x-tab-nav__scroll {
     position: relative;
     height: @item-height-regular;
@@ -76,7 +79,6 @@ export default {
       display: block;
       position: absolute;
       bottom: 0;
-      left: 0;
       width: 100%;
       height: 2px;
       background: @gray-2;
@@ -91,6 +93,24 @@ export default {
       &.nav-active, &:hover { color: @main-theme-color; cursor: pointer; }
       &.nav-disabled { color: @gray-3; cursor: default; }
     }
+    &.tab-top::after, &.tab-right::after, &.tab-bottom::after { left: 0}
+    &.tab-left, &.tab-right {
+      flex-direction: column;
+      height: 100%;
+      &::after {
+        width: 2px;
+        height: 100%;
+      }
+      .x-tab-nav__item {
+        padding: 0 @padding-md;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        text-align: left;
+      }
+    }
+    &.tab-left .x-tab-nav__item { text-align: right; }
+    &.tab-left::after { right: 0 }
   }
 }
 </style>
