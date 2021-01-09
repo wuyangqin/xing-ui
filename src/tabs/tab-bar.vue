@@ -1,6 +1,5 @@
 <template>
-  <div class="x-tab__active-bar" :class="tabNavWrapperClasses" :style="barStyle">
-  </div>
+  <div class="x-tab__active-bar" :style="barStyle"></div>
 </template>
 
 <script>
@@ -9,41 +8,32 @@ import tabMixin from "./tabMixin";
 export default {
   name: 'XTabBar',
   mixins: [tabMixin],
-  components: {
-  },
-  props: {
-    width: {
-      type: Number,
-      default: 0
-    },
-    translate: {
-      type: Number,
-      default: 0
+  data () {
+    return {
+      barStyle: {}
     }
   },
-  computed: {
-    barStyle () {
-      let { width,translate, isVertical } = this
+  mounted () {
+    this.tabsBus.$on('tabBar', (index, navTab) => {
+      let { isVertical } = this
       let { tabPosition } = this.tabsBus
-      let translateStyle = isVertical ?
+      let navTabStyle = window.getComputedStyle(navTab)
+      let { paddingLeft, paddingRight } = navTabStyle
+      let width = navTab.getBoundingClientRect().width - (parseFloat(paddingLeft) + parseFloat(paddingRight))
+      let translate = isVertical ? navTab.offsetTop : navTab.offsetLeft + parseFloat(paddingLeft)
+      let style = isVertical ?
           {
-            top: translate + 'px',
-            width: 2 + 'px',
-            height: 40 + 'px',
+            top: `${translate}px`,
+            width: '2px',
+            height: '40px',
             left: tabPosition === 'left' ? '' : 0,
             right: tabPosition === 'left' ? 0 : ''
           } :
           {
-            left: translate + 'px', width: width + 'px'
+            left: `${translate}px`, width: `${width}px`
           }
-      return translateStyle
-    }
-  },
-  data () {
-    return {
-    }
-  },
-  methods: {
+      this.barStyle = style
+    })
   }
 }
 </script>

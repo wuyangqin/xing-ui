@@ -1,7 +1,7 @@
 <template>
   <div class="x-tab-nav__wrapper">
     <div class="x-tab-nav__scroll flex-box" :class="tabNavWrapperClasses">
-      <x-tab-bar :width="navWidth" :translate="translate"></x-tab-bar>
+      <x-tab-bar></x-tab-bar>
       <div class="x-tab-nav__item"
            v-for="(nav, index) in tabPanes" :key="index"
            :ref="`tab-${nav.name}`"
@@ -26,14 +26,16 @@ export default {
   },
   data () {
     return {
-      navWidth: 0,
-      translate: 0
+      initIndex: 0
     }
   },
   mounted () {
     let tabNames = this.tabPanes.map(item => item.name)
-    let index = tabNames.indexOf(this.tabsBus.selectTab)
-    this.getNavWidth(index)
+    this.initIndex = tabNames.indexOf(this.tabsBus.selectTab)
+    this.emitToTabBar(this.initIndex)
+  },
+  updated () {
+    this.emitToTabBar(this.initIndex)
   },
   methods: {
     tabNavClasses (nav) {
@@ -44,23 +46,18 @@ export default {
           disabled ? 'nav-disabled' : ''
       ]
     },
-    getNavWidth (index) {
+    emitToTabBar (index) {
       this.$nextTick(() => {
         let { selectTab } = this.tabsBus
-        let { tabPanes, isVertical } = this
-        let tabNames = tabPanes.map(item => item.name)
-        let width = index === 0 || index === tabPanes.length - 1 ? 16 : 32
         let navTab = this.$refs[`tab-${selectTab}`][0]
-        this.navWidth = navTab.getBoundingClientRect().width - width
-        if (isVertical) {}
-        this.translate = isVertical ? navTab.offsetTop : navTab.offsetLeft + ( index === 0 ? 0 : 16 )
+        this.tabsBus.$emit('tabBar', index, navTab)
       })
     },
     clickNavItem (nav, index) {
       let { name, disabled } = nav
       if (disabled) { return }
       this.tabsBus.selectTab = name
-      this.getNavWidth(index)
+      this.emitToTabBar(index)
       this.$emit('change', nav.name)
     }
   }

@@ -30,9 +30,22 @@
 </head>
 <body>
 <div id="app">
+  <x-button-group>
+    <x-button @click="position = 'left'">left</x-button>
+    <x-button @click="position = 'right'">right</x-button>
+    <x-button @click="position = 'top'">top</x-button>
+    <x-button @click="position = 'bottom'">bottom</x-button>
+  </x-button-group>
   <div class="source">
-    <x-tabs v-model="active" tab-position="left" @change="changeTab" style="height: 200px">
-      <x-tab label="游戏" name="game">游戏内容</x-tab>
+<!--    <x-icon name="setting" color="#333"></x-icon>-->
+    <x-tabs v-model="active" :tab-position="position" @change="changeTab" style="height: 200px">
+      <x-tab label="游戏" name="game">
+        <template #label>
+          <x-icon name="setting" color="#333"></x-icon>
+          开心游戏
+        </template>
+        游戏内容
+      </x-tab>
       <x-tab label="音乐啊" name="music">音乐内容</x-tab>
       <x-tab label="视频" name="video">视频内容</x-tab>
     </x-tabs>
