@@ -27,7 +27,10 @@ export default {
     }
   },
   created () {
-    this.tabsBus.$emit('getTabProps', this.$props)
+    this.tabsBus.$emit('getTabPanes', this)
+  },
+  updated () {
+    // this.tabsBus.$emit('getTabProps', this)
   }
 }
 </script>

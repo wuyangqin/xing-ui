@@ -6,6 +6,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>星UI</title>
+<!--  <link rel="stylesheet" href="./src/css/xing-ui.less" />-->
   <style lang="less">
     * {
       margin: 0;
@@ -37,11 +38,10 @@
     <x-button @click="position = 'bottom'">bottom</x-button>
   </x-button-group>
   <div class="source">
-<!--    <x-icon name="setting" color="#333"></x-icon>-->
     <x-tabs v-model="active" :tab-position="position" @change="changeTab" style="height: 200px">
       <x-tab label="游戏" name="game">
         <template #label>
-          <x-icon name="setting" color="#333"></x-icon>
+          <x-icon name="download"></x-icon>
           开心游戏
         </template>
         游戏内容
@@ -49,11 +49,6 @@
       <x-tab label="音乐啊" name="music">音乐内容</x-tab>
       <x-tab label="视频" name="video">视频内容</x-tab>
     </x-tabs>
-<!--    <x-tabs v-model="active" tab-position="right" @change="changeTab" style="height: 200px">-->
-<!--      <x-tab label="游戏" name="game">游戏内容</x-tab>-->
-<!--      <x-tab label="音乐啊" name="music">音乐内容</x-tab>-->
-<!--      <x-tab label="视频" name="video">视频内容</x-tab>-->
-<!--    </x-tabs>-->
   </div>
 </div>
 <script src="./src/app.js">

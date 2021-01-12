@@ -1,3 +1,4 @@
+// import './css/xing-ui.less'
 import Vue from 'vue'
 import  Button from './button'
 import  Icon from './icon'
@@ -14,7 +15,6 @@ import actions from './common/action'
 import  toast  from './plugin/toast'
 import  Tabs  from './tabs/tabs'
 import  Tab  from './tabs/tab'
-import  Text  from './tabs/text'
 
 Vue.component('x-button', Button)
 Vue.component('x-button-group', ButtonGroup)
@@ -29,7 +29,6 @@ Vue.component('x-main', Main)
 Vue.component('x-aside', Aside)
 Vue.component('x-tabs', Tabs)
 Vue.component('x-tab', Tab)
-Vue.component('x-text', Text)
 
 Vue.prototype.xWarning = actions.xWarning
 Vue.prototype.xError = actions.xError

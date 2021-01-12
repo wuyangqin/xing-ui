@@ -11,21 +11,6 @@ const tabMixin = {
       let { tabPosition } = this.tabsBus
       return tabPosition === 'left' || tabPosition === 'right'
     }
-  },
-  data() {
-    return {
-      tabPanes: []
-    }
-  },
-  created () {
-    this.getTabProps()
-  },
-  methods: {
-    getTabProps () {
-      this.tabsBus.$on('getTabProps', (data) => {
-        this.tabPanes.push(data)
-      })
-    }
   }
 }
 
