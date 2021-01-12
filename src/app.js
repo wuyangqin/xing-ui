@@ -14,6 +14,7 @@ import actions from './common/action'
 import  toast  from './plugin/toast'
 import  Tabs  from './tabs/tabs'
 import  Tab  from './tabs/tab'
+import  Text  from './tabs/text'
 
 Vue.component('x-button', Button)
 Vue.component('x-button-group', ButtonGroup)
@@ -28,6 +29,7 @@ Vue.component('x-main', Main)
 Vue.component('x-aside', Aside)
 Vue.component('x-tabs', Tabs)
 Vue.component('x-tab', Tab)
+Vue.component('x-text', Text)
 
 Vue.prototype.xWarning = actions.xWarning
 Vue.prototype.xError = actions.xError
@@ -38,12 +40,13 @@ new Vue ({
   el: '#app',
   data() {
     return {
+      position: 'top',
       active: 'game'
     }
   },
   methods: {
     changeTab (e) {
-      console.log(e);
+      // console.log(e);
     }
     
   }
