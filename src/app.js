@@ -1,4 +1,3 @@
-// import './css/xing-ui.less'
 import Vue from 'vue'
 import  Button from './button'
 import  Icon from './icon'
@@ -47,6 +46,5 @@ new Vue ({
     changeTab (e) {
       // console.log(e);
     }
-    
   }
 })
