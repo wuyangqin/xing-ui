@@ -26,15 +26,8 @@ export default {
       default: false
     }
   },
-  created () {
-    this.tabsBus.$emit('getTabPanes', this)
-  },
   updated () {
-    // this.tabsBus.$emit('getTabProps', this)
+    this.$parent.$emit('tab-nav-update');
   }
 }
 </script>
-
-<style scoped lang="less">
-
-</style>

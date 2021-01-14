@@ -1,7 +1,7 @@
 <template>
   <div class="x-tabs" :class="tabsClasses">
     <div class="x-tab__header">
-      <tab-nav @change="$emit('change', $event)"></tab-nav>
+      <tab-nav :tab-panes="tabPanes" @change="$emit('change', $event)"></tab-nav>
     </div>
     <div class="x-tabs__content">
       <slot></slot>
@@ -53,10 +53,33 @@ export default {
   },
   data () {
     return {
-      tabsBus: this
+      tabsBus: this,
+      tabPanes: []
     }
   },
+  created () {
+    this.$on('tab-nav-update', this.getTabPanes.bind(null, true))
+  },
+  mounted () {
+    this.getTabPanes()
+  },
+  updated () {
+    this.getTabPanes()
+  },
   methods: {
+    getTabPanes (isForceUpdate = false) {
+      if (this.$slots.default) {
+        const paneSlots = this.$slots.default.filter (vnode => vnode.tag &&  vnode.componentOptions &&
+            vnode.componentOptions.Ctor.options.name === 'XTab')
+        const tabPanes = paneSlots.map(({ componentInstance }) => componentInstance)
+        const panesChanged = !(tabPanes.length === this.tabPanes.length && tabPanes.every((pane, index) => pane === this.tabPanes[index]));
+        if (isForceUpdate || panesChanged) {
+          this.tabPanes = tabPanes;
+        }
+      } else if (this.tabPanes.length !== 0) {
+        this.tabPanes = [];
+      }
+    }
   }
 }
 </script>

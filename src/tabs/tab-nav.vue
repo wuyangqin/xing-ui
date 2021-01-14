@@ -10,14 +10,16 @@ export default {
   components: {
     XTabBar
   },
-  data () {
-    return {
-      initIndex: 0,
-      tabPanes: []
+  props: {
+    tabPanes: {
+      type: Array,
+      default: () => []
     }
   },
-  created () {
-    this.getTabPanes()
+  data () {
+    return {
+      initIndex: 0
+    }
   },
   mounted () {
     let tabNames = this.tabPanes.map(item => item.name)
@@ -25,7 +27,6 @@ export default {
     this.emitToTabBar(this.initIndex)
   },
   updated () {
-    this.getTabPanes()
     this.emitToTabBar(this.initIndex)
   },
   methods: {
@@ -44,19 +45,11 @@ export default {
         this.tabsBus.$emit('tabBar', index, navTab)
       })
     },
-    clickNavItem (nav, index) {
+    clickNavItem (nav) {
       let { name, disabled } = nav
       if (disabled) { return }
       this.tabsBus.selectTab = name
       this.$emit('change', nav.name)
-    },
-    getTabPanes () {
-      this.tabsBus.$on('getTabPanes', (data) => {
-        if (this.tabPanes.indexOf(data) === -1) {
-          // console.log(data.$slots.label);
-          this.tabPanes.push(data)
-        }
-      })
     }
   },
   render () {
@@ -73,7 +66,7 @@ export default {
           <div class={['x-tab-nav__item', ...navClass]}
                key={index}
                ref={`tab-${pane.name}`}
-               on-click={(ev) => {clickNavItem(pane, index)}}
+               on-click={() => {clickNavItem(pane, index)}}
                >
               {label}
           </div>
