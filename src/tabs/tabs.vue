@@ -1,7 +1,7 @@
 <template>
   <div class="x-tabs" :class="tabsClasses">
     <div class="x-tab__header">
-      <tab-nav :tab-panes="tabPanes" @change="$emit('change', $event)"></tab-nav>
+      <tab-nav ref="tabNav" :tab-panes="tabPanes" @change="$emit('change', $event)"></tab-nav>
     </div>
     <div class="x-tabs__content">
       <slot></slot>
@@ -24,7 +24,7 @@ export default {
     },
     tabPosition: {
       type: String,
-      default: top,
+      default: 'top',
       validator (value) {
         return ['top', 'left', 'right', 'bottom'].indexOf(value) > -1
       }

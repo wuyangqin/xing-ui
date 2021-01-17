@@ -34,6 +34,7 @@ export default {
       let { name, disabled } = nav
       let { selectTab } = this.tabsBus
       return [
+          `x-tab-nav__item-${name}`,
           selectTab === name ? 'nav-active' : '',
           disabled ? 'nav-disabled' : ''
       ]
