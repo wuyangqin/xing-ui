@@ -43,5 +43,8 @@ new Vue ({
     }
   },
   methods: {
+    xxx () {
+      console.log('xxx');
+    }
   }
 })
