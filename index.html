@@ -16,7 +16,7 @@
   </style>
   <style lang="less">
     body {
-      margin: 0px;
+      margin: 0;
     }
     #app {
       color: #323233;
@@ -24,31 +24,18 @@
   </style>
   <style lang="less">
     .source {
-      padding: 20px;
+      padding: 100px;
       border: 1px solid #969799;
     }
   </style>
 </head>
 <body>
 <div id="app">
-  <x-button-group>
-    <x-button @click="position = 'left'">left</x-button>
-    <x-button @click="position = 'right'">right</x-button>
-    <x-button @click="position = 'top'">top</x-button>
-    <x-button @click="position = 'bottom'">bottom</x-button>
-  </x-button-group>
   <div class="source">
-    <x-tabs v-model="active" :tab-position="position" @change="changeTab" style="height: 200px">
-      <x-tab label="游戏" name="game">
-        <template #label>
-          <x-icon name="download"></x-icon>
-          开心游戏
-        </template>
-        游戏内容
-      </x-tab>
-      <x-tab label="音乐啊" name="music">音乐内容</x-tab>
-      <x-tab label="视频" name="video">视频内容</x-tab>
-    </x-tabs>
+    <x-popover>
+      <template #content>pop over的内容哈哈哈</template>
+      <x-button>点我</x-button>
+    </x-popover>
   </div>
 </div>
 <script src="./src/app.js">
