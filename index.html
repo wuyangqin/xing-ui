@@ -33,10 +33,12 @@
 <body>
 <div id="app">
   <div class="source">
-    <x-popover>
-      <template #content>pop over的内容哈哈哈</template>
-      <x-button>点我</x-button>
-    </x-popover>
+    <div style="border: 1px solid black; overflow: hidden; padding: 3px;">
+      <x-popover>
+        <template #content>pop over的内容哈哈哈</template>
+        <x-button>点我</x-button>
+      </x-popover>
+    </div>
   </div>
 </div>
 <script src="./src/app.js">

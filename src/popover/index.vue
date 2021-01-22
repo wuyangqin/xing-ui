@@ -1,9 +1,11 @@
 <template>
   <div class="x-popover-wrapper" @click.stop="trigger">
-    <div class="x-popover-content" v-if="visible" @click.stop>
+    <div class="x-popover-content" ref="content" v-if="visible" @click.stop>
       <slot name="content"></slot>
     </div>
-    <slot></slot>
+    <div class="x-popover-trigger" ref="trigger">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -26,6 +28,10 @@ export default {
       let { visible } = this
       if (visible) {
         this.$nextTick(() => {
+          document.body.appendChild(this.$refs.content)
+          let { top, left } = this.$refs.trigger.getBoundingClientRect()
+          this.$refs.content.style.top = top + window.scrollY + 'px'
+          this.$refs.content.style.left = left + window.scrollX + 'px'
           let triggerHandler = () => {
             this.visible = false
             document.removeEventListener('click', triggerHandler)
@@ -45,13 +51,15 @@ export default {
   position: relative;
   display: inline-block;
   font-size: @font-size-md;
-  .x-popover-content {
-    position: absolute;
-    bottom: 130%;
-    left: 0;
-    padding: @padding-base 1em;
-    min-width: 120px;
-    border: 1px solid @gray-2;
+  .x-popover-trigger {
+    display: inline-block;
   }
+}
+.x-popover-content {
+  position: absolute;
+  padding: @padding-base 1em;
+  min-width: 120px;
+  border: 1px solid @gray-2;
+  transform: translateY(-130%);
 }
 </style>
