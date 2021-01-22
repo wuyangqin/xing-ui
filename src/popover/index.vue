@@ -1,6 +1,6 @@
 <template>
-  <div class="x-popover-wrapper" @click="triggle">
-    <div class="x-popover-content" v-if="visible">
+  <div class="x-popover-wrapper" @click.stop="trigger">
+    <div class="x-popover-content" v-if="visible" @click.stop>
       <slot name="content"></slot>
     </div>
     <slot></slot>
@@ -21,8 +21,18 @@ export default {
     }
   },
   methods: {
-    triggle () {
+    trigger () {
       this.visible = !this.visible
+      let { visible } = this
+      if (visible) {
+        this.$nextTick(() => {
+          let triggerHandler = () => {
+            this.visible = false
+            document.removeEventListener('click', triggerHandler)
+          }
+          document.addEventListener('click', triggerHandler)
+        })
+      }
     }
   }
 }
@@ -37,7 +47,7 @@ export default {
   font-size: @font-size-md;
   .x-popover-content {
     position: absolute;
-    bottom: 40px;
+    bottom: 130%;
     left: 0;
     padding: @padding-base 1em;
     min-width: 120px;
