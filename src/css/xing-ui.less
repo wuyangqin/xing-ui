@@ -19,7 +19,6 @@
 @warning: #E6A23C;
 @info: #909399;
 @item-height-regular: 32px;
-@border: 1px solid #eee;
 // Font
 @font-size-xs: 10px;
 @font-size-xs11: 11px;
@@ -34,6 +33,12 @@
 @line-height-sm: 18px;
 @line-height-md: 20px;
 @line-height-lg: 22px;
+
+//border
+@main-border: 1px solid @gray-2;
+@light-border: 1px solid @gray-1;
+@border-color-main: @gray-2;
+@border-color-light: @gray-1;
 
 //border-radius
 @border-radius: 4px;
@@ -62,7 +67,10 @@
 @toast-height: 40px;
 @toast-border-radius: @border-radius;
 @toast-color: @white;
-@toast-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.50);
+@toast-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+
+//popover
+@popover-shadow: 0 2px 5px rgba(0,0,0,.03);
 
 .icon-error, .error-message {
   fill: currentColor !important;

@@ -1,6 +1,6 @@
 <template>
   <div class="x-popover-wrapper" @click="togglePopover" ref="popover">
-    <div class="x-popover-content" ref="content" v-if="visible" @click.stop>
+    <div class="x-popover-content" :class="contentClasses" ref="content" v-if="visible" @click.stop>
       <slot name="content"></slot>
     </div>
     <div class="x-popover-trigger" ref="trigger">
@@ -15,11 +15,9 @@ export default {
   name: 'XPopover',
   components: {
   },
-  props: {
-  },
   data () {
     return {
-      visible: false
+      visible: true
     }
   },
   methods: {
@@ -71,9 +69,32 @@ export default {
 }
 .x-popover-content {
   position: absolute;
-  padding: @padding-base 1em;
-  min-width: 120px;
-  border: 1px solid @gray-2;
-  transform: translateY(-130%);
+  padding: @padding-sm 1em;
+  min-width: 150px;
+  max-width: 20em;
+  background: @white;
+  border: @main-border;
+  border-radius: @border-radius;
+  //box-shadow: @popover-shadow;
+  filter: drop-shadow(@popover-shadow);
+  font-size: @font-size-md;
+  word-break: break-all;
+  margin-top: -10px;
+  transform: translateY(-100%);
+  &::after, &&::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 100%;
+    left: 10px;
+    border: 6px solid transparent;
+    border-top-color: @border-color-main;
+  }
+  &::after {
+    top: calc(100% - 1px);
+    border-top-color: @white;
+  }
 }
 </style>
