@@ -41,7 +41,8 @@ export default {
   },
   data () {
     return {
-      visible: false
+      visible: false,
+      closeTimeOut: null
     }
   },
   mounted () {
@@ -52,12 +53,16 @@ export default {
         break
       case 'hover':
         popover.addEventListener('mouseenter', this.contentOpen)
-        popover.addEventListener('mouseleave', this.contentClose)
+        popover.addEventListener('mouseleave', (event) => {
+          this.closeTimeOut = setTimeout(() => {
+            this.contentClose(event)
+          }, 100)
+        })
         break
     }
   },
   destroyed () {
-    let { popover } = this.$refs
+    let { popover, content } = this.$refs
     switch (this.trigger) {
       case 'click':
         popover.removeEventListener('click', this.onClick)
@@ -65,6 +70,8 @@ export default {
       case 'hover':
         popover.removeEventListener('mouseenter', this.contentOpen)
         popover.removeEventListener('mouseleave', this.contentClose)
+        content.removeEventListener('mouseenter', this.clearTimeout)
+        content.removeEventListener('mouseleave', this.contentClose)
         break
     }
   },
@@ -91,15 +98,29 @@ export default {
       }
     },
     contentOpen () {
+      let { trigger } = this
       this.visible = true
+      if (trigger === 'hover') {
+        this.onHover()
+      }
       setTimeout(() => {
         this.positionContent()
-        document.addEventListener('click', this.toggleHandler)
+        if (trigger === 'click') {
+          document.addEventListener('click', this.toggleHandler)
+        }
       })
     },
     contentClose () {
       this.visible = false
-      document.removeEventListener('click', this.toggleHandler)
+      if (this.trigger === 'click') {
+        document.removeEventListener('click', this.toggleHandler)
+      }
+    },
+    onHover () {
+      this.$nextTick(() => {
+        this.$refs.content.addEventListener('mouseenter', this.clearTimeout)
+        this.$refs.content.addEventListener('mouseout', this.contentClose)
+      })
     },
     onClick (event) {
       if (this.$refs.trigger.contains(event.target)) {
@@ -109,6 +130,9 @@ export default {
           this.contentOpen()
         }
       }
+    },
+    clearTimeout () {
+      clearTimeout(this.closeTimeOut)
     }
   }
 }
