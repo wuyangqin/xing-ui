@@ -15,17 +15,46 @@ export default {
   name: 'XPopover',
   components: {
   },
+  props: {
+    placement: {
+      type: String,
+      default: 'top',
+      validator (value) {
+        return [ 'top', 'left', 'bottom', 'right' ].indexOf(value) > -1
+      }
+    }
+  },
+  computed: {
+    contentClasses () {
+      let { placement } = this
+      return [
+          `popover-content__${placement}`
+      ]
+    }
+  },
   data () {
     return {
-      visible: true
+      visible: false
     }
   },
   methods: {
     positionContent () {
       document.body.appendChild(this.$refs.content)
-      let { top, left } = this.$refs.trigger.getBoundingClientRect()
-      this.$refs.content.style.top = top + window.scrollY + 'px'
-      this.$refs.content.style.left = left + window.scrollX + 'px'
+      let { content, trigger } = this.$refs
+      let { top, left, height, width } = trigger.getBoundingClientRect()
+      let contentTop = top
+      let contentLeft = left
+      let { placement } = this
+      let { height:contentHeight } = content.getBoundingClientRect()
+      switch (placement) {
+        case 'bottom': contentTop = top + height; break
+        case 'right': contentLeft = left + width; break
+      }
+      if (placement === 'left' || placement === 'right') {
+        contentTop = top - ( contentHeight - height ) / 2
+      }
+      content.style.top = contentTop + window.scrollY + 'px'
+      this.$refs.content.style.left = contentLeft + window.scrollX + 'px'
     },
     toggleHandler (e) {
       if (this.$refs.popover !== e.target && !this.$refs.popover.contains(e.target)) {
@@ -63,9 +92,7 @@ export default {
   position: relative;
   display: inline-block;
   font-size: @font-size-md;
-  .x-popover-trigger {
-    display: inline-block;
-  }
+  .x-popover-trigger { display: inline-block; }
 }
 .x-popover-content {
   position: absolute;
@@ -75,26 +102,41 @@ export default {
   background: @white;
   border: @main-border;
   border-radius: @border-radius;
-  //box-shadow: @popover-shadow;
   filter: drop-shadow(@popover-shadow);
   font-size: @font-size-md;
   word-break: break-all;
-  margin-top: -10px;
-  transform: translateY(-100%);
   &::after, &&::before {
     content: '';
     display: block;
     position: absolute;
     width: 0;
     height: 0;
-    top: 100%;
-    left: 10px;
     border: 6px solid transparent;
-    border-top-color: @border-color-main;
   }
-  &::after {
-    top: calc(100% - 1px);
-    border-top-color: @white;
+  &.popover-content__top {
+    margin-top: -10px;
+    transform: translateY(-100%);
+    &::after, &&::before { left: 10px; }
+    &::before { top: 100%; border-top-color: @border-color-main; }
+    &::after { top: calc(100% - 1px); border-top-color: @white; }
+  }
+  &.popover-content__left {
+    transform: translateX(-105%);
+    &::after, &&::before { top: 50%; transform: translateY(-50%);}
+    &::before { left: 100%; border-left-color: @border-color-main; }
+    &::after { left: calc(100% - 1px); border-left-color: @white; }
+  }
+  &.popover-content__right {
+    margin-left: @padding-sm + 2;
+    &::after, &&::before { top: 50%; transform: translateY(-50%);}
+    &::before { right: 100%; border-right-color: @border-color-main; }
+    &::after { right: calc(100% - 1px); border-right-color: @white; }
+  }
+  &.popover-content__bottom {
+    margin-top: 10px;
+    &::after, &&::before { left: 10px; }
+    &::before { bottom: 100%; border-bottom-color: @border-color-main; }
+    &::after { bottom: calc(100% - 1px); border-bottom-color: @white; }
   }
 }
 </style>
