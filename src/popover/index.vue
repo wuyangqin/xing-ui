@@ -40,21 +40,19 @@ export default {
   methods: {
     positionContent () {
       document.body.appendChild(this.$refs.content)
-      let { content, trigger } = this.$refs
-      let { top, left, height, width } = trigger.getBoundingClientRect()
-      let contentTop = top
-      let contentLeft = left
-      let { placement } = this
-      let { height:contentHeight } = content.getBoundingClientRect()
-      switch (placement) {
-        case 'bottom': contentTop = top + height; break
-        case 'right': contentLeft = left + width; break
+      const { content, trigger } = this.$refs
+      const { top, left, height, width } = trigger.getBoundingClientRect()
+      const { placement } = this
+      const { height:contentHeight } = content.getBoundingClientRect()
+      const leftRightTop = top - ( contentHeight - height ) / 2
+      let positions = {
+        top: { top, left },
+        bottom: { top: top + height, left },
+        left: { top: leftRightTop, left },
+        right: { top: leftRightTop, left: left + width }
       }
-      if (placement === 'left' || placement === 'right') {
-        contentTop = top - ( contentHeight - height ) / 2
-      }
-      content.style.top = contentTop + window.scrollY + 'px'
-      this.$refs.content.style.left = contentLeft + window.scrollX + 'px'
+      content.style.top = positions[placement].top + window.scrollY + 'px'
+      content.style.left = positions[placement].left + window.scrollX + 'px'
     },
     toggleHandler (e) {
       if (this.$refs.popover !== e.target && !this.$refs.popover.contains(e.target)) {
