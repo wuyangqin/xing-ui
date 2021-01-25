@@ -25,7 +25,7 @@
   </style>
   <style lang="less">
     .source {
-      padding: 200px;
+      padding: 100px 200px;
       border: 1px solid #969799;
     }
   </style>
@@ -33,7 +33,7 @@
 <body>
 <div id="app">
   <div class="source">
-    <div @click="xxx" style=" width:400px">
+    <div style="width:400px; padding-bottom: 50px;">
       <x-popover placement="left">
         <template #content>pop over的内容哈哈哈</template>
         <x-button>点我left</x-button>
@@ -47,6 +47,24 @@
         <x-button>点我bottom</x-button>
       </x-popover>
       <x-popover placement="right">
+        <template #content>pop over的内容哈哈哈</template>
+        <x-button>点我right</x-button>
+      </x-popover>
+    </div>
+    <div style="width:400px">
+      <x-popover placement="left" trigger="hover">
+        <template #content>pop over的内容哈哈哈</template>
+        <x-button>点我left</x-button>
+      </x-popover>
+      <x-popover placement="top" trigger="hover">
+        <template #content>pop over的内容哈哈哈</template>
+        <x-button>点我top</x-button>
+      </x-popover>
+      <x-popover placement="bottom" trigger="hover">
+        <template #content>pop over的内容哈哈哈</template>
+        <x-button>点我bottom</x-button>
+      </x-popover>
+      <x-popover placement="right" trigger="hover">
         <template #content>pop over的内容哈哈哈</template>
         <x-button>点我right</x-button>
       </x-popover>

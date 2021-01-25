@@ -1,5 +1,5 @@
 <template>
-  <div class="x-popover-wrapper" @click="togglePopover" ref="popover">
+  <div class="x-popover-wrapper" ref="popover">
     <div class="x-popover-content" :class="contentClasses" ref="content" v-if="visible" @click.stop>
       <slot name="content"></slot>
     </div>
@@ -22,6 +22,13 @@ export default {
       validator (value) {
         return [ 'top', 'left', 'bottom', 'right' ].indexOf(value) > -1
       }
+    },
+    trigger: {
+      type: String,
+      default: 'click',
+      validator (value) {
+        return [ 'click', 'hover' ].indexOf(value) > -1
+      }
     }
   },
   computed: {
@@ -35,6 +42,30 @@ export default {
   data () {
     return {
       visible: false
+    }
+  },
+  mounted () {
+    let { popover } = this.$refs
+    switch (this.trigger) {
+      case 'click':
+        popover.addEventListener('click', this.onClick)
+        break
+      case 'hover':
+        popover.addEventListener('mouseenter', this.contentOpen)
+        popover.addEventListener('mouseleave', this.contentClose)
+        break
+    }
+  },
+  destroyed () {
+    let { popover } = this.$refs
+    switch (this.trigger) {
+      case 'click':
+        popover.removeEventListener('click', this.onClick)
+        break
+      case 'hover':
+        popover.removeEventListener('mouseenter', this.contentOpen)
+        popover.removeEventListener('mouseleave', this.contentClose)
+        break
     }
   },
   methods: {
@@ -59,7 +90,7 @@ export default {
         this.contentClose()
       }
     },
-    contentShow () {
+    contentOpen () {
       this.visible = true
       setTimeout(() => {
         this.positionContent()
@@ -70,12 +101,12 @@ export default {
       this.visible = false
       document.removeEventListener('click', this.toggleHandler)
     },
-    togglePopover (event) {
+    onClick (event) {
       if (this.$refs.trigger.contains(event.target)) {
         if (this.visible) {
           this.contentClose()
         } else {
-          this.contentShow()
+          this.contentOpen()
         }
       }
     }
