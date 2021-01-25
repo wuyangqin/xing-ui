@@ -35,7 +35,10 @@
   <div class="source">
     <div style="width:400px; padding-bottom: 50px;">
       <x-popover placement="left">
-        <template #content>pop over的内容哈哈哈</template>
+        <template slot="content" slot-scope="{ contentClose }">
+          pop over的内容哈哈哈
+          <x-button @click="contentClose">关闭</x-button>
+        </template>
         <x-button>点我left</x-button>
       </x-popover>
       <x-popover placement="top">

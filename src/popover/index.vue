@@ -1,7 +1,7 @@
 <template>
   <div class="x-popover-wrapper" ref="popover">
     <div class="x-popover-content" :class="contentClasses" ref="content" v-if="visible" @click.stop>
-      <slot name="content"></slot>
+      <slot name="content" :contentClose="contentClose"></slot>
     </div>
     <div class="x-popover-trigger" ref="trigger">
       <slot></slot>
