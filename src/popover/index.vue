@@ -61,7 +61,7 @@ export default {
         break
     }
   },
-  destroyed () {
+  beforeDestroy () {
     let { popover, content } = this.$refs
     switch (this.trigger) {
       case 'click':
@@ -103,7 +103,7 @@ export default {
       if (trigger === 'hover') {
         this.onHover()
       }
-      setTimeout(() => {
+      this.$nextTick(() => {
         this.positionContent()
         if (trigger === 'click') {
           document.addEventListener('click', this.toggleHandler)
