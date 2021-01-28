@@ -1,4 +1,5 @@
 module.exports = {
+  base: '/xing-ui/',
   title: 'Hello Xing-UI',
   description: '一个基于Vue的UI框架',
   themeConfig: {
