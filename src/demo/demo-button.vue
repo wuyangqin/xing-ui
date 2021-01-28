@@ -1,19 +1,21 @@
 <template>
-  <div class="demo-button-wrapper">
-    <div class="demo-box">
+  <div class="demo-button-box">
+    <demo-box>
       <x-button>主要按钮</x-button>
       <x-button icon="setting">图标按钮</x-button>
       <x-button :loading="loading" @click="loading = !loading">加载按钮</x-button>
-    </div>
+    </demo-box>
   </div>
 </template>
 
 <script>
-import XButton from '../../../src/button.vue'
+import DemoBox from './demo-box'
+import XButton from '../button.vue'
 
 export default {
   name: 'demo-button',
   components: {
+    DemoBox,
     XButton
   },
   data () {
@@ -24,6 +26,6 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import url('../../../src/css/xing-ui');
+<style scoped lang="less">
+@import url('../css/xing-ui');
 </style>

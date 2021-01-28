@@ -4,7 +4,7 @@ title: Button
 # Button 按钮
 
 ### 基础用法
-<demo-button></demo-button>
+  <docs-demo demo-src="demo-button"></docs-demo>
 
 #### 示例代码
 ```vue
