@@ -11,10 +11,10 @@
       </div>
       <div class="code-wrapper" ref="codeWrapper">
         <div ref="codeContent">
-          <div class="code-description">
+          <div class="code-description" v-if="$slots.description">
             <slot name="description"></slot>
           </div>
-          <pre-code :code="code"></pre-code>
+          <pre-code :code="code" :type="codeType"></pre-code>
         </div>
       </div>
       <div class="code-show-control flex-box"
@@ -31,7 +31,7 @@
 
 <script>
 import XIcon from '../../icon'
-import PreCode from './pre-code'
+import PreCode from '../../../docs/.vuepress/components/pre-code'
 
 export default {
   name:'x-ui-demo-box',
@@ -51,6 +51,10 @@ export default {
     code: {
       type: String,
       default: ''
+    },
+    codeType: {
+      type: String,
+      default: 'html'
     }
   },
   data () {

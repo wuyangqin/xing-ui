@@ -1,39 +1,41 @@
 <template>
-  <div class="demo-button-box">
-    <demo-box title="基础用法" introduction="基础的按钮用法" :code="sourcecode">
-      <template #components>
-        <x-button>主要按钮</x-button>
-        <x-button icon="setting">图标按钮</x-button>
-        <x-button :loading="loading" @click="loading = !loading">加载按钮</x-button>
-      </template>
-      <template #description>
-        <p>
-          图标可由<code>icon</code>属性设置, loading状态可由<code>loading</code>属性设置。
-        </p>
-      </template>
-    </demo-box>
-  </div>
+  <demo-page class="demo-button-box" :option="demoOption">
+    <template #primary>
+      <x-button>主要按钮</x-button>
+      <x-button icon="setting">图标按钮</x-button>
+      <x-button :loading="loading" @click="loading = !loading">加载按钮</x-button>
+    </template>
+    <template #group>
+      <x-button-group>
+        <x-button icon="left">上一页</x-button>
+        <x-button icon="right" icon-position="right">下一页</x-button>
+      </x-button-group>
+      <x-button-group>
+        <x-button icon="download"></x-button>
+        <x-button icon="setting"></x-button>
+        <x-button icon="thumbs-up"></x-button>
+      </x-button-group>
+    </template>
+  </demo-page>
 </template>
 
 <script>
-import DemoBox from './common/demo-box'
+import DemoPage from './common/demo-page'
 import XButton from '../button.vue'
+import XButtonGroup from '../button-group'
+import { BUTTON_OPTION } from './js/button'
 
 export default {
   name: 'demo-button',
   components: {
-    DemoBox,
-    XButton
+    DemoPage,
+    XButton,
+    XButtonGroup
   },
   data () {
     return {
       loading: true,
-      show: true,
-      sourcecode: `
-<x-button>主要按钮</x-button>
-<x-button icon="setting">图标按钮</x-button>
-<x-button :loading="loading" @click="loading = !loading">加载按钮</x-button>
-      `
+      demoOption: BUTTON_OPTION
     }
   }
 }

@@ -5,7 +5,7 @@
 <script>
 
 export default {
-  name: 'x-ui-docs-pre-code',
+  name: 'pre-code',
   props: {
     code: {
       type: String,
@@ -21,5 +21,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import url('../../css/docs-demo');
+@import url('../../../src/css/docs-demo');
 </style>

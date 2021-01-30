@@ -22,10 +22,10 @@ module.exports = {
         collapsable: false,
         children: [
           '/components/button',
-          '/components/tabs',
           '/components/input',
           '/components/grid',
           '/components/layout',
+          '/components/tabs',
           '/components/toast'
         ]
       }
