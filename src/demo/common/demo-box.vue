@@ -1,7 +1,7 @@
 <template>
   <div class="demo-box-wrapper">
-    <h3>{{ title }}</h3>
-    <p>{{ introduction }}</p>
+    <h3 v-if="title">{{ title }}</h3>
+    <p v-if="introduction" v-html="introduction"></p>
     <div class="demo-box"
          :class="{ hover: wrapperHover }"
          @mouseenter="wrapperHover = true"
