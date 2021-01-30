@@ -53,6 +53,15 @@ describe ('Input', () => {
       const errorMessage = vm.$el.querySelector('.error-message')
       expect(errorMessage.innerText).to.equal('error')
     })
+    it ('可以设置placeholder', () => {
+      vm = new Constructor({
+        propsData: {
+          placeholder: '请输入内容'
+        }
+      }).$mount()
+      const inputElement = vm.$el.querySelector('input')
+      expect(inputElement.placeholder).to.equal('请输入内容')
+    })
   })
   describe('Events', () => {
     const Constructor = Vue.extend(Input)

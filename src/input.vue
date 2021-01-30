@@ -1,6 +1,10 @@
 <template>
   <div class="x-input-wrapper" :class="{error}">
-    <input :value="value" type="text" :disabled="disabled" :readonly="readonly" :class="{disabled, readonly}"
+    <input :value="value" type="text"
+           :class="{ disabled, readonly }"
+           :disabled="disabled"
+           :readonly="readonly"
+           :placeholder="placeholder"
            @change="$emit('change', $event.target.value)"
            @input="$emit('input', $event.target.value)"
            @focus="$emit('focus', $event.target.value)"
@@ -35,6 +39,10 @@ export default {
     error: {
       type: String,
       default: ''
+    },
+    placeholder: {
+      type: String,
+      default: ''
     }
   }
 }
@@ -52,7 +60,9 @@ export default {
     transition: all .3s;
     text-indent: 1em;
     font-size: inherit;
+    color: @gray-7;
     line-height: @item-height-regular;
+    &::placeholder { color: @gray-5; }
     &:hover {
       border: @input-hover-border;
     }
@@ -74,7 +84,7 @@ export default {
   }
   &.error {
     > input {
-      border-color: @warning;
+      border-color: @error;
     }
     .icon-error {
       width: 1.2em;
