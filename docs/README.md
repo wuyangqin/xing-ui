@@ -1,6 +1,7 @@
 ---
 home: true
 heroText: Xing-UI
+heroImage: /logo.png
 tagline: 一个基于Vue的UI组件库
 actionText: 快速上手 →
 actionLink: /get-started/
