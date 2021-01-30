@@ -7,8 +7,6 @@
 <script>
 export default {
   name: 'XContainer',
-  components: {
-  },
   props: {
     direction: {
       type: String,
