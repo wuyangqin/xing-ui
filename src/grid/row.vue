@@ -9,7 +9,10 @@ export default {
   props: {
     gutter: {
       type: [String, Number],
-      default: ''
+      default: 0,
+      validator (value) {
+        return !isNaN(Number(value));
+      }
     },
     align: {
       type: String,

@@ -19,11 +19,17 @@ export default {
   props: {
     span: {
       type: [String, Number],
-      default: ''
+      default: '',
+      validator (value) {
+        return !isNaN(Number(value));
+      }
     },
     offset: {
       type: [String, Number],
-      default: ''
+      default: '',
+      validator (value) {
+        return !isNaN(Number(value));
+      }
     },
     ipad: { type: Object, validator },
     narrowPc: { type: Object, validator },
