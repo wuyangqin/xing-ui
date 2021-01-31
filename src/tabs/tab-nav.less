@@ -10,7 +10,7 @@
       position: absolute;
       bottom: 0;
       width: 100%;
-      height: 2px;
+      height: @tab-bar-narrow;
       background: @gray-2;
     }
     .x-tab-nav__item {
@@ -28,14 +28,14 @@
       flex-direction: column;
       height: 100%;
       &::after {
-        width: 2px;
+        width: @tab-bar-narrow;
         height: 100%;
       }
       .x-tab-nav__item {
         padding: 0 @padding-md;
         width: 100%;
-        height: 40px;
-        line-height: 40px;
+        height: @tab-bar-wide;
+        line-height: @tab-bar-wide;
         text-align: left;
       }
     }

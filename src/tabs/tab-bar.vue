@@ -1,5 +1,5 @@
 <template>
-  <div class="x-tab__active-bar" :style="barStyle"></div>
+  <div class="x-tab__active-bar" :class="tabNavWrapperClasses" :style="barStyle"></div>
 </template>
 
 <script>
@@ -46,8 +46,9 @@ export default {
   position: absolute;
   bottom: 0;
   z-index: 99;
-  height: 2px;
+  height: @tab-bar-narrow;
   background: @main-theme-color;
-  transition: all .5s;
+  &.tab-top, &.tab-bottom { transition: left @tab-bar-duration, width @tab-bar-duration; }
+  &.tab-left, &.tab-right { transition: top @tab-bar-duration }
 }
 </style>

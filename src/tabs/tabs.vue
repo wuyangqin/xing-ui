@@ -90,11 +90,11 @@ export default {
   display: flex;
   flex-direction: column;
   .x-tab__header {
-    margin-bottom: @padding-xs;
+    margin-bottom: @tabs-margin-num;
   }
   &.tabs-bottom {
     flex-direction: column-reverse;
-    .x-tab__header { margin-top: @padding-xs; }
+    .x-tab__header { margin-top: @tabs-margin-num; }
   }
   &.tabs-left, &.tabs-right {
     flex-direction: row;
@@ -102,12 +102,12 @@ export default {
   }
   &.tabs-left {
     flex-direction: row;
-    .x-tab__header { margin-right: @padding-xs; }
+    .x-tab__header { margin-right: @tabs-margin-num; }
   }
   &.tabs-right {
     flex-direction: row-reverse;
     .x-tabs__content { width: 100%; }
-    .x-tab__header { margin-left: @padding-xs; flex-shrink: 0; }
+    .x-tab__header { margin-left: @tabs-margin-num; flex-shrink: 0; }
   }
 }
 </style>
