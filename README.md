@@ -7,6 +7,9 @@
 ## 介绍
 这是我基于对Vue和组件化开发的理解做的一个UI框架
 
+## 文档地址
+<wuyangqin.github.io/xing-ui/>
+
 ## 开始使用
 1. 安装
 
@@ -15,23 +18,6 @@
 *, *::before, *::after{box-sizing: border-box}
 ```
 IE 8 及以上浏览器都支持此样式
-你还需要设置默认颜色等变量(后续会改为 LESS 变量)
-```CSS
-html {
-  --main-theme-color: #2DD39C;
-  --main-hover-color: #4DE9B7;
-  --main-active-color: #4DC19C;
-  --button-height: 32px;
-  --font-size: 14px;
-  --button-bg: var(--main-theme-color);
-  --button-active-bg: var(--main-active-color);
-  --button-hover-bg: var(--main-hover-color);
-  --color: #333;
-  --border-radius: 4px;
-  --border: 1px solid #eee;
-}
-```
-IE 15 及以上浏览器都支持此样式
 
 2. 安装 xing-ui
 ```
@@ -49,11 +35,6 @@ export default {
  }
 }
 ```
-
-## 文档
-
-## 组件
-### 按钮
 
 ## 提问
 
