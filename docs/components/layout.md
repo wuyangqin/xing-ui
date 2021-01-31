@@ -1,5 +1,5 @@
 ---
-title: Layout
+title: Layout 布局
 ---
 # Layout 布局
 `<x-container>`：外层容器。当子元素中包含 `<x-header>` 或 `<x-footer>` 时，全部子元素会垂直上下排列，否则会水平左右排列

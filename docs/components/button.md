@@ -1,5 +1,5 @@
 ---
-title: Button
+title: Button 按钮
 ---
 # Button 按钮
   <docs-demo demo-src="demo-button"></docs-demo>
