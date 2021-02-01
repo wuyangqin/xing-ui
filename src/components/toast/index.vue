@@ -58,9 +58,7 @@ export default {
     }
   },
   created () {
-    if (this.duration) {
-      this.close()
-    }
+    this.autoClose()
   },
   mounted () {
     if (this.showClose) {
@@ -81,11 +79,16 @@ export default {
         this.closeButton.onClose(this)
       }
     },
-    close (more) {
-      setTimeout(() => {
-        this.$el.remove()
-        this.$destroy()
-      }, more ? 0 : this.duration)
+    close () {
+      this.$el.remove()
+      this.$destroy()
+    },
+    autoClose () {
+      if (this.duration) {
+        setTimeout(() => {
+          this.close()
+        }, this.duration)
+      }
     }
   }
 }
@@ -96,6 +99,7 @@ export default {
 .toast-wrapper {
   position: fixed;
   left: 50%;
+  z-index: 1001;
   &.toast-top {
     top: @padding-lg;
     transform: translateX(-50%);

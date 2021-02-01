@@ -11,8 +11,9 @@ export default {
         return
       }
       let propsData = getPropsData(typeof arguments[0], toastOptions)
+      // 避免出现多个 toast 重叠
       if (currentToast) {
-        currentToast.close(1)
+        currentToast.close()
       }
       currentToast = createToast(Vue, propsData)
     };
@@ -24,6 +25,7 @@ export default {
  * helper
  */
 function getPropsData (type, toastOptions) {
+  // 当只接收一个字符串时转换为message配置
   return type === 'object' ? toastOptions : { message: toastOptions }
 }
 function createToast (Vue, propsData) {
