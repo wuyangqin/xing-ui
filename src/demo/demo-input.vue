@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import XInput from '../input.vue'
+import XInput from '../components/input.vue'
 import DemoPage from './common/demo-page'
 import  { INPUT_OPTION } from "./js/input"
 

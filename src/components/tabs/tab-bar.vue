@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import url('../css/xing-ui');
+@import url('../../css/xing-ui');
 .x-tab__active-bar {
   position: absolute;
   bottom: 0;

@@ -41,11 +41,11 @@
 
 <script>
 import DemoPage from './common/demo-page'
-import XTabs from '../tabs/tabs.vue'
-import XTab from '../tabs/tab'
-import XButton from '../button.vue'
-import XButtonGroup from '../button-group'
-import XIcon from '../icon.vue'
+import XTabs from '../components/tabs/tabs.vue'
+import XTab from '../components/tabs/tab'
+import XButton from '../components/button.vue'
+import XButtonGroup from '../components/button-group'
+import XIcon from '../components/icon.vue'
 import { TABS_OPTION } from './js/tabs'
 
 export default {

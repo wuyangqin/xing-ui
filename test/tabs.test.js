@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import Tabs from '../src/tabs/tabs'
-import Tab from '../src/tabs/tab'
+import Tabs from '../src/components/tabs/tabs'
+import Tab from '../src/components/tabs/tab'
 
 const expect = chai.expect
 Vue.component('x-tabs', Tabs)

@@ -1,4 +1,4 @@
-import Toast from '../toast/index'
+import Toast from '../components/toast/index'
 
 let currentToast
 

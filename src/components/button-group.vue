@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('./css/xing-ui');
+@import url('../css/xing-ui');
 .x-button-group {
   display: inline-flex;
   vertical-align: middle;

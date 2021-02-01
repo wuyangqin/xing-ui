@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import XIcon from '../../icon'
+import XIcon from '../../components/icon'
 import PreCode from '../../../docs/.vuepress/components/pre-code'
 
 export default {

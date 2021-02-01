@@ -92,7 +92,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import url('../css/xing-ui');
+@import url('../../css/xing-ui');
 .toast-wrapper {
   position: fixed;
   left: 50%;

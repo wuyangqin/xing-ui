@@ -21,8 +21,8 @@
 
 <script>
 import DemoPage from './common/demo-page'
-import XButton from '../button.vue'
-import XButtonGroup from '../button-group'
+import XButton from '../components/button.vue'
+import XButtonGroup from '../components/button-group'
 import { BUTTON_OPTION } from './js/button'
 
 export default {

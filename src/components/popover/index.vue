@@ -139,7 +139,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import url('../css/xing-ui.less');
+@import url('../../css/xing-ui.less');
 
 .x-popover-wrapper {
   position: relative;

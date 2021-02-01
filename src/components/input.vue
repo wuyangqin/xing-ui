@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import url('./css/xing-ui');
+@import url('../css/xing-ui');
 .x-input-wrapper {
   display: inline-block;
   font-size: @font-size-md;

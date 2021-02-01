@@ -108,8 +108,8 @@
 </template>
 
 <script>
-import XRow from '../grid/row.vue'
-import XCol from '../grid/col.vue'
+import XRow from '../components/grid/row.vue'
+import XCol from '../components/grid/col.vue'
 import DemoPage from './common/demo-page'
 import  { GRID_OPTION } from "./js/grid"
 

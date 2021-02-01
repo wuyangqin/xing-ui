@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import url('../css/xing-ui');
+@import url('../../css/xing-ui');
 .col {
   border-radius: 4px;
   box-sizing: border-box;

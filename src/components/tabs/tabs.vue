@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import url('../css/xing-ui');
+@import url('../../css/xing-ui');
 .x-tabs {
   display: flex;
   flex-direction: column;

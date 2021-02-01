@@ -62,11 +62,11 @@
 
 <script>
 import DemoPage from './common/demo-page'
-import XContainer from '../layout/container.vue'
-import XAside from '../layout/aside.vue'
-import XFooter from '../layout/footer.vue'
-import XHeader from '../layout/header.vue'
-import XMain from '../layout/main.vue'
+import XContainer from '../components/layout/container.vue'
+import XAside from '../components/layout/aside.vue'
+import XFooter from '../components/layout/footer.vue'
+import XHeader from '../components/layout/header.vue'
+import XMain from '../components/layout/main.vue'
 import { LAYOUT_OPTION } from './js/layout'
 
 export default {

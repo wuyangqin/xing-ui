@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url('./css/xing-ui');
+@import url('../css/xing-ui');
 @keyframes spin {
   0% { transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
