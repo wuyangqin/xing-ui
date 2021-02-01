@@ -114,7 +114,7 @@ import DemoPage from './common/demo-page'
 import  { GRID_OPTION } from "./js/grid"
 
 export default {
-  name: 'demo-input',
+  name: 'demo-grid',
   components: {
     XRow,
     XCol,

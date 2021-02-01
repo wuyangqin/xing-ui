@@ -1,5 +1,5 @@
 <template>
-  <demo-page class="demo-button-box" :option="option">
+  <demo-page class="demo-tabs-box" :option="option">
     <template #primary>
       <x-tabs v-model="activeName" @change="changeTab">
         <x-tab label="星星" name="xingxing">星星</x-tab>
@@ -49,7 +49,7 @@ import XIcon from '../components/icon.vue'
 import { TABS_OPTION } from './js/tabs'
 
 export default {
-  name: 'demo-button',
+  name: 'demo-tabs',
   components: {
     XIcon,
     XButton,

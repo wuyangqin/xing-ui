@@ -158,6 +158,7 @@ export default {
   filter: drop-shadow(@popover-shadow);
   font-size: @font-size-md;
   word-break: break-all;
+  z-index: 1001;
   &::after, &&::before {
     content: '';
     display: block;
