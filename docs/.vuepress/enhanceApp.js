@@ -1,6 +1,8 @@
 //代码高亮文件引入
 import Vue from 'vue'
 import hljs from 'highlight.js'
+import toast from '../../src/plugin/toast'
+Vue.use(toast)
 //样式文件
 import 'highlight.js/styles/color-brewer.css'
 Vue.directive('highlight',function (el) {
