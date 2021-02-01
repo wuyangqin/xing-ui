@@ -61,6 +61,35 @@ export default {
 }
 </script>
           `
+  },
+  {
+    name: 'slot',
+    title: '自定义标签',
+    description: `Tab 组件可通过<code> slot </code>自定义标签内容`,
+    code: `
+<x-tabs v-model="activeName3">
+  <x-tab label="星星" name="xingxing">星星</x-tab>
+  <x-tab label="羊咩" name="mie">羊咩</x-tab>
+  <x-tab label="开心" name="kaixin">开心</x-tab>
+  <x-tab name="ye">
+    <template #label>
+      <span>好耶</span>
+      <x-icon name="thumbs-up"></x-icon>
+    </template>
+    好耶
+  </x-tab>
+</x-tabs>
+
+<script >
+export default {
+  data () {
+    return {
+      activeName: 'ye',
+    }
+  }
+}
+</script>
+    `
   }
 ]
 

@@ -17,9 +17,23 @@
       </x-button-group>
       <x-tabs v-model="activeName2" :tab-position="tabPosition" @change="changeTab">
         <x-tab label="星星" name="xingxing">星星</x-tab>
-        <x-tab label="开心" name="kaixin">开心</x-tab>
         <x-tab label="羊咩" name="mie">羊咩</x-tab>
+        <x-tab label="开心" name="kaixin">开心</x-tab>
         <x-tab label="好耶" name="ye">好耶</x-tab>
+      </x-tabs>
+    </template>
+    <template #slot>
+      <x-tabs v-model="activeName3">
+        <x-tab label="星星" name="xingxing">星星</x-tab>
+        <x-tab label="羊咩" name="mie">羊咩</x-tab>
+        <x-tab label="开心" name="kaixin">开心</x-tab>
+        <x-tab name="ye">
+          <template #label>
+            <span style="marginRight: 4px">好耶</span>
+            <x-icon name="thumbs-up"></x-icon>
+          </template>
+          好耶
+        </x-tab>
       </x-tabs>
     </template>
   </demo-page>
@@ -31,11 +45,13 @@ import XTabs from '../tabs/tabs.vue'
 import XTab from '../tabs/tab'
 import XButton from '../button.vue'
 import XButtonGroup from '../button-group'
+import XIcon from '../icon.vue'
 import { TABS_OPTION } from './js/tabs'
 
 export default {
   name: 'demo-button',
   components: {
+    XIcon,
     XButton,
     XButtonGroup,
     DemoPage,
@@ -46,6 +62,7 @@ export default {
     return {
       activeName: 'xingxing',
       activeName2: 'xingxing',
+      activeName3: 'ye',
       tabPosition: 'top',
       option: TABS_OPTION
     }
