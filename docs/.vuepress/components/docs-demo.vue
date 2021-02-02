@@ -30,7 +30,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less">
-@import url('../../../src/css/xing-ui');
-</style>

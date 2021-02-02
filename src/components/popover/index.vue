@@ -63,16 +63,18 @@ export default {
   },
   beforeDestroy () {
     let { popover, content } = this.$refs
-    switch (this.trigger) {
-      case 'click':
-        popover.removeEventListener('click', this.onClick)
-        break
-      case 'hover':
-        popover.removeEventListener('mouseenter', this.contentOpen)
-        popover.removeEventListener('mouseleave', this.contentClose)
-        content.removeEventListener('mouseenter', this.clearTimeout)
-        content.removeEventListener('mouseleave', this.contentClose)
-        break
+    if (popover && content) {
+      switch (this.trigger) {
+        case 'click':
+          popover.removeEventListener('click', this.onClick)
+          break
+        case 'hover':
+          popover.removeEventListener('mouseenter', this.contentOpen)
+          popover.removeEventListener('mouseleave', this.contentClose)
+          content.removeEventListener('mouseenter', this.clearTimeout)
+          content.removeEventListener('mouseleave', this.contentClose)
+          break
+      }
     }
   },
   methods: {

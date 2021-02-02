@@ -2,7 +2,6 @@
 import Vue from 'vue'
 import hljs from 'highlight.js'
 import toast from '../../src/plugin/toast'
-Vue.use(toast)
 //样式文件
 import 'highlight.js/styles/color-brewer.css'
 Vue.directive('highlight',function (el) {
@@ -17,5 +16,6 @@ export default ({
                   // router, // 当前应用的路由实例
                   // siteData // 站点元数据
                 }) => {
+  Vue.use(toast)
 // ...做一些其他的应用级别的优化
 }

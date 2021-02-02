@@ -5,10 +5,8 @@
 </template>
 
 <script>
-import '../svg'
+
 export default {
-  components: {
-  },
   props: {
     name: {
       type: String,
@@ -19,6 +17,9 @@ export default {
       default: ''
     }
   },
+  mounted () {
+    import('../svg.js').then(icon => {})
+  }
 }
 </script>
 
