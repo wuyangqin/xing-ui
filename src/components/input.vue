@@ -63,8 +63,10 @@ export default {
     color: @gray-7;
     line-height: @item-height-regular;
     &::placeholder { color: @gray-5; }
-    &:hover {
-      border: @input-hover-border;
+    @media (any-hover: hover) {
+      &:hover {
+        border: @input-hover-border;
+      }
     }
     &:focus {
       box-shadow: @input-focus;

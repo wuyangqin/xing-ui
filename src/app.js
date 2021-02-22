@@ -10,11 +10,13 @@ import Header from './components/layout/header'
 import Footer from './components/layout/footer'
 import Main from './components/layout/main'
 import Aside from './components/layout/aside'
-import actions from './common/action'
 import  toast  from './plugin/toast'
 import  Tabs  from './components/tabs/tabs'
 import  Tab  from './components/tabs/tab'
 import XPopover from "./components/popover/index";
+
+import { isMobile } from './utils/env'
+import actions from './common/action'
 
 Vue.component('x-button', Button)
 Vue.component('x-button-group', ButtonGroup)
@@ -33,6 +35,7 @@ Vue.component('x-popover', XPopover)
 
 Vue.prototype.xWarning = actions.xWarning
 Vue.prototype.xError = actions.xError
+Vue.prototype.isMobile = isMobile
 
 Vue.use(toast)
 

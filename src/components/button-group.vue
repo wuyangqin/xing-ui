@@ -30,7 +30,9 @@ export default {
     }
     &:first-child { border-radius: @border-radius 0 0 @border-radius; }
     &:last-child { border-radius: 0 @border-radius @border-radius 0; }
-    &:hover { z-index: 999 }
+    @media (any-hover: hover) {
+      &:hover { z-index: 999 }
+    }
   }
 }
 </style>
