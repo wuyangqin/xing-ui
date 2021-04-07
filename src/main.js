@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import App from "./App.vue";
 import  Button from './components/button'
 import  Icon from './components/icon'
 import  ButtonGroup from './components/button-group'
@@ -39,15 +40,9 @@ Vue.prototype.isMobile = isMobile
 
 Vue.use(toast)
 
-new Vue ({
-  el: '#app',
-  data() {
-    return {
-    }
-  },
-  methods: {
-    xxx () {
-      console.log('xxx');
-    }
-  }
-})
+
+Vue.config.productionTip = false;
+
+new Vue({
+  render: (h) => h(App),
+}).$mount("#app");
