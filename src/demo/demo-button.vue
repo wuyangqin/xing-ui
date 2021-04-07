@@ -43,4 +43,9 @@ export default {
 
 <style scoped lang="less">
 @import url('../css/docs-demo');
+.demo-button-box {
+  .components-box.mobile {
+    button { display: block; margin-top: @padding-md; }
+  }
+}
 </style>

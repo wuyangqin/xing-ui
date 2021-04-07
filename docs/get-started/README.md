@@ -18,6 +18,7 @@ title: 快速上手
 #### 按需引入
 
 <pre-code code="import { Button } from 'xing-ui-1-1'
+import 'xing-ui-1-1/dist/index.css'
 import Vue from 'vue'
                  
 new Vue({

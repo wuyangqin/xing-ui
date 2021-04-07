@@ -6,7 +6,7 @@
          :class="{ hover: wrapperHover }"
          @mouseenter="wrapperHover = true"
          @mouseleave="wrapperHover = false">
-      <div class="components-box" :class="{ show: codeShow }">
+      <div class="components-box" :class="{ show: codeShow, mobile: isMobile }">
         <slot name="components"></slot>
       </div>
       <div class="code-wrapper" ref="codeWrapper">

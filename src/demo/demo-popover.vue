@@ -93,20 +93,30 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 @import url('../css/docs-demo');
-.popover-box {
-  padding: 10px;
-  width: 30%;
-  .top, .bottom { text-align: center; }
-  .left {
-    float: left;
-    text-align: left;
+.demo-popover-box {
+  .components-box {
+    .popover-box {
+      margin: auto;
+      padding: 10px;
+      width: 45%;
+      .top, .bottom { text-align: center; }
+      .left {
+        float: left;
+        text-align: left;
+      }
+      .right {
+        float: right;
+        text-align: right;
+      }
+      .bottom { clear: both; }
+    }
+    &.mobile{
+      .popover-box {
+        width: 70%;
+      }
+    }
   }
-  .right {
-    float: right;
-    text-align: right;
-  }
-  .bottom { clear: both; }
 }
 </style>

@@ -2,11 +2,11 @@
   <demo-page class="demo-input-wrapper" :option="option">
     <template #primary>
       <x-input v-model="value" placeholder="请输入内容"></x-input>
-      <span> 双向绑定的值：{{value}} </span>
+      <p> 双向绑定的值：{{value}} </p>
     </template>
     <template #disabled>
       <x-input placeholder="请输入内容" disabled></x-input>
-      <x-input value="只读的输入框" placeholder="请输入内容" readonly></x-input>
+      <x-input style="marginTop: 16px" value="只读的输入框" placeholder="请输入内容" readonly></x-input>
     </template>
     <template #error>
       <x-input v-model="errorValue" placeholder="请输入内容" :error="errorValue ? '':'请输入内容'"></x-input>
