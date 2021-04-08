@@ -4,18 +4,18 @@
       <slot></slot>
     </div>
     <div class="x-cascader-popover" v-if="popoverVisible">
-      <cascader-item v-bind="$props"></cascader-item>
+      <cascader-items v-bind="$props"></cascader-items>
     </div>
   </div>
 </template>
 
 <script>
-import CascaderItem from './cascaderItem'
+import CascaderItems from './cascaderItems'
 
 export default {
   name: 'x-cascader',
   components: {
-    CascaderItem
+    CascaderItems
   },
   props: {
     source: {
