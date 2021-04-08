@@ -1,9 +1,9 @@
 const xError = function (errorMsg) {
-  console.error(`【X-UI错误】${errorMsg}`);
+  throw new Error(`[X-UI错误]${errorMsg}`);
 }
 
 const xWarning = function (warningMsg) {
-  console.error(`【X-UI提示】${warningMsg}`);
+  console.warn(`[X-UI提示]${warningMsg}`);
 }
 
 export default {

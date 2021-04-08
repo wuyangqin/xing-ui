@@ -29,7 +29,7 @@ export default {
       let childName = vm.$options.name
       let childVm = ['XAside', 'XHeader', 'XFooter', 'XMain', 'XContainer']
       if (!childVm.includes(childName)) {
-        this.xError('<x-container>组件不能包含<x-container>,<x-header>,<x-footer>,<x-main>,<x-aside>以外的组件！')
+        this.xWarning('<x-container>组件不能包含<x-container>,<x-header>,<x-footer>,<x-main>,<x-aside>以外的组件！')
         return
       }
       if (childName === 'XAside') {
