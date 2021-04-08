@@ -1,5 +1,6 @@
 @import url('./xing-ui.less');
 @text-color: #2c3e50;
+@wrapper-background-color:#fcfcfc;
 .demo-box-wrapper {
   @transition: all @animate-duration-regular;
   margin-top: 40px;
@@ -13,7 +14,7 @@
       &.show { border-bottom: @main-border; }
     }
     .code-wrapper {
-      background: @gray-1;
+      background: @wrapper-background-color;
       overflow: hidden;
       transition: @transition;
       .demo-pre { margin: 0; }
@@ -68,6 +69,6 @@
 }
 
 .demo-pre {
-  background: @gray-1;
+  background: @wrapper-background-color;
   code { color: @gray-8; }
 }

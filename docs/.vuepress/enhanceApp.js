@@ -1,12 +1,12 @@
 //代码高亮文件引入
 import Vue from 'vue'
 import hljs from 'highlight.js'
-import toast from '../../src/plugin/toast'
+import toast from '../../src/components/plugin/toast'
 // 环境判断
 import { isMobile } from '../../src/utils/env'
 
 //样式文件
-import 'highlight.js/styles/color-brewer.css'
+import 'highlight.js/styles/nord.css'
 Vue.directive('highlight',function (el) {
   let blocks = el.querySelectorAll('pre code');
   blocks.forEach((block)=>{

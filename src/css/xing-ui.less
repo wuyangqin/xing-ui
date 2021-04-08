@@ -1,6 +1,6 @@
-@main-theme-color: #2DD39C;
-@main-hover-color: #57DCB0;
-@main-active-color: #29B48C;
+@main-theme-color: #87dfd6;
+@main-hover-color: lighten(@main-theme-color, 8%);
+@main-active-color: darken(@main-theme-color, 10%);
 @black: #000;
 @white: #fff;
 @gray-1: #f7f8fa;
@@ -14,10 +14,18 @@
 @active-color: @gray-2;
 @color: #333;
 @text-color: @gray-8;
-@error: #f56556;
-@success: #67C23A;
-@warning: #E6A23C;
-@info: #909399;
+@error: #FC7365;
+@error-hover: lighten(@error, 8%);
+@error-active: darken(@error, 8%);
+@success: #4ecca3;
+@success-hover: lighten(@success, 8%);
+@success-active: darken(@success, 8%);
+@warning: #FCC98B;
+@warning-hover: lighten(@warning, 8%);
+@warning-active: darken(@warning, 8%);
+@info: #C5D4EA;
+@info-hover: lighten(@info, 5%);
+@info-active: darken(@info, 8%);
 @item-height-regular: 32px;
 // Font
 @font-size-xs: 10px;

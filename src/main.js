@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from "./App.vue";
-import  toast  from './plugin/toast'
+import  toast  from './components/plugin/toast'
 
 import { isMobile } from './utils/env'
 import actions from './common/action'
