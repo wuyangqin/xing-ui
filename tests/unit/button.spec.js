@@ -9,7 +9,6 @@ chai.use(sinonChai)
 describe('Button', () => {
   it('存在.', () => {
     expect(Button).to.be.ok
-    // expect(1).to.equal(1)
   })
   it('可以设置icon.', () => {
     const wrapper = mount(Button, {

@@ -1,8 +1,13 @@
-import Vue from 'vue'
-import Tabs from '../src/components/tabs/tabs'
-import Tab from '../src/components/tabs/tab'
+import chai, {expect} from 'chai'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
+import {shallowMount} from '@vue/test-utils'
 
-const expect = chai.expect
+import Vue from 'vue/dist/vue.esm.js'
+import Tabs from '../../src/components/tabs/tabs'
+import Tab from '../../src/components/tabs/tab'
+
+chai.use(sinonChai)
 Vue.component('x-tabs', Tabs)
 Vue.component('x-tab', Tab)
 
@@ -17,11 +22,15 @@ describe('Tabs和tab', () => {
     expect(Tab).to.be.ok
   })
   describe('tabsProps', () => {
-    const Constructor = Vue.extend(Tabs)
-    let vm
-    it('可以接收value', (done) => {
-      const div = document.createElement('div')
+    let div
+    beforeEach(() => {
+      div = document.createElement('div')
       document.body.appendChild(div)
+    })
+    afterEach(() => {
+      div.remove()
+    })
+    it('可以接收value', (done) => {
       div.innerHTML = `
         <x-tabs value="kaixin">
           <x-tab label="开心" name="kaixin"></x-tab>
@@ -40,23 +49,27 @@ describe('Tabs和tab', () => {
         done()
       })
     })
-    it('可以接收tabPosition', () => {
-      vm = new Constructor({
+    it('可以设置tabPosition', () => {
+      const wrapper = shallowMount(Tabs, {
         propsData: {
           value: '1',
           tabPosition: 'bottom'
         }
-      }).$mount()
-      expect(vm.$el.classList.contains('tabs-bottom')).to.eq(true)
-      vm.$destroy()
+      })
+      expect(wrapper.classes('tabs-bottom')).to.eq(true)
     })
   })
   describe('tabProps', () => {
     const Constructor = Vue.extend(Tab)
-    let vm
-    it('可以接收label', (done) => {
-      const div = document.createElement('div')
+    let div
+    beforeEach(() => {
+      div = document.createElement('div')
       document.body.appendChild(div)
+    })
+    afterEach(() => {
+      div.remove()
+    })
+    it('可以设置label', (done) => {
       div.innerHTML = `
         <x-tabs value="kaixin">
           <x-tab label="kaixin" name="kaixin"></x-tab>
@@ -73,9 +86,7 @@ describe('Tabs和tab', () => {
         done()
       })
     })
-    it('可以接收name', (done) => {
-      const div = document.createElement('div')
-      document.body.appendChild(div)
+    it('可以设置name', (done) => {
       div.innerHTML = `
         <x-tabs ref="tabs" value="kaixin">
           <x-tab label="kaixin" name="kaixin"></x-tab>
@@ -92,9 +103,7 @@ describe('Tabs和tab', () => {
         done()
       })
     })
-    it('可以接收disabled', (done) => {
-      const div = document.createElement('div')
-      document.body.appendChild(div)
+    it('可以设置disabled', (done) => {
       div.innerHTML = `
         <x-tabs ref="tabs" value="kaixin">
           <x-tab label="kaixin" name="kaixin" disabled></x-tab>
@@ -129,7 +138,7 @@ describe('Tabs和tab', () => {
       `
       const vm = new Vue({
         el: div,
-        data () {
+        data() {
           return {
             selectTab: 'kaixin'
           }
