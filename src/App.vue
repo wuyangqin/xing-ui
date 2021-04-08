@@ -1,29 +1,61 @@
 <template>
 <div id="app">
-  <tabs v-model="select">
-    <tab label="211" name="2"></tab>
-    <tab label="123123" name="1"></tab>
-  </tabs>
+  <cascader :source="source">
+    <button>点我</button>
+  </cascader>
 </div>
 </template>
 
 <script>
-import Tab from './components/tabs/tab'
-import Tabs from './components/tabs/tabs'
+import Cascader from './components/cascader/index'
 export default {
 name: "App",
   components:{
-    Tabs,
-    Tab
+    Cascader
   },
   data(){
   return {
-    select:'1'
+    visible:false,
+    source: [{
+      name: '浙江',
+      children: [
+        {
+          name: '杭州',
+          children: [
+            {name: '上城'},
+            {name: '下城'},
+            {name: '江干'},
+          ]
+        },
+        {
+          name: '嘉兴',
+          children: [
+            {name: '南湖'},
+            {name: '秀洲'},
+            {name: '嘉善'},
+          ]
+        },
+      ]
+    }, {
+      name: '福建',
+      children: [
+        {
+          name: '福州',
+          children: [
+            {name: '鼓楼'},
+            {name: '台江'},
+            {name: '仓山'},
+          ]
+        },
+      ]
+    }]
   }
   }
 }
 </script>
 
 <style scoped>
-
+#app {
+  margin: 100px;
+}
 </style>
