@@ -1,8 +1,13 @@
 <template>
   <div id="app">
-    <cascader v-model="selected" :source="source" @change="change">
+    <cascader v-model="selected" :source.sync="source" :lazy-load="lazyLoad"
+              @change="change"
+    >
       <!--      <button>点我</button>-->
     </cascader>
+<!--    <cascader v-model="selected" :source.sync="source1"-->
+<!--              @change="change">-->
+<!--    </cascader>-->
   </div>
 </template>
 
@@ -16,10 +21,14 @@ const ajax = function (id = 0) {
     db.forEach(item => {
       if (item.parent_id === id) {
         const {id, parent_id, name, value} = item
-        result.push({id, parent_id, name, value})
+        const isLeaf = db.filter(node => node.parent_id === id).length === 0
+        result.push({id, parent_id, name, value,isLeaf})
       }
     })
-    resolve(result)
+    setTimeout(()=>{
+      resolve(result)
+
+    },2000)
   })
 }
 export default {
@@ -32,7 +41,16 @@ export default {
       visible: false,
       // selected:['zhejiang','hangzhou','xiacheng'],
       selected: [],
-      source: [{
+      selected1:[],
+      source:[],
+      source1:[]
+    }
+  },
+  created() {
+    ajax().then(result => {
+      this.source = result;
+    })
+    this.source1 = [{
         name: '浙江',
         value: 'zhejiang',
         children: [
@@ -82,16 +100,16 @@ export default {
           }]
         }]
       }]
-    }
-  },
-  created() {
-    ajax(0).then(result => {
-      console.log(result);
-    })
   },
   methods: {
-    change(e) {
-      console.log(e);
+    lazyLoad(node,resolve){
+      ajax(node.id).then(result => {
+        resolve(result)
+      })
+    },
+    change(value,selectedNodes) {
+      console.log(value);
+      console.log(selectedNodes);
     }
   }
 }

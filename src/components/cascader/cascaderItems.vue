@@ -1,16 +1,16 @@
 <template>
   <div class="xx-cascader-item" :style="{ height: height + 'px' }">
-    <ul class="xx-cascader-item-left x-scrollbar">
-      <li class="label" :class="getItemClasses(item)"
-          v-for="item in source" :key="item.name"
-          @click="onClickLabel(item)">
-        <span>{{ item.name }}</span>
-        <x-icon v-if="item.children" name="right"></x-icon>
+    <ul class="xx-cascader-item-left xx-scrollbar">
+      <li class="label" :class="getLabelClasses(node)"
+          v-for="node in source" :key="node.name"
+          @click="onClickLabel(node)">
+        <span>{{ node.name }}</span>
+        <x-icon v-if="rightArrowVisible(node)" name="right"></x-icon>
       </li>
     </ul>
     <div class="xx-cascader-item-right" v-if="rightItems">
-      <x-cascader-items v-model="newValue" :source="rightItems" :level="level+1"
-                        @closePopover="$listeners.closePopover" @change="change">
+      <x-cascader-items v-model="newValue" :source="rightItems" :level="level+1" :lazy-load="lazyLoad"
+                        @closePopover="$listeners.closePopover" @change="change" @select="select($event)">
       </x-cascader-items>
     </div>
   </div>
@@ -38,28 +38,41 @@ export default {
   },
   data() {
     return {
-      selectedItem: null
+      selectedNode: null
     }
   },
   methods: {
-    getItemClasses(item) {
-      const {selectedItem, currentItem} = this
-      const isSelected = (currentItem) => currentItem && item.value === currentItem.value
+    getLabelClasses(node) {
+      const {selectedNode, currentItem} = this
+      const isSelected = (currentItem) => currentItem && node.value === currentItem.value
       return {
         'active': isSelected(currentItem),
-        'focus': isSelected(selectedItem)
+        'focus': isSelected(selectedNode)
       }
     },
-    onClickLabel(item) {
-      this.$parent.selectedItem = null;
-      this.selectedItem = item
+    rightArrowVisible(node) {
+      return this.lazyLoad ? !node.isLeaf : node.children && node.children.length > 0
+    },
+    onClickLabel(node) {
+      this.$parent.selectedNode = null;
+      this.selectedNode = node
       this.newValue.splice(this.level)
-      this.$set(this.newValue, this.level, item)
+      this.$set(this.newValue, this.level, node)
+      this.changeHandler(node)
+    },
+    changeHandler(node) {
       const {closePopover} = this.$listeners
-      if (!item.children) {
-        closePopover()
-        this.change()
+      if (!node.children || node.children.length === 0) {
+        if (!this.lazyLoad || node.isLeaf) {
+          closePopover()
+          this.change()
+          return
+        }
+        this.select(node)
       }
+    },
+    select(node) {
+      this.$emit('select', node)
     },
     change() {
       this.$emit('change', this.newValue)

@@ -3,12 +3,14 @@
              content-class-name="cascader-popover"
              @onClose="rollback">
     <span class="xx-cascader-trigger__wrapper">
-    <slot v-if="$slots.default"></slot>
-    <x-input v-else class="cascader-input" readonly :placeholder="placeholder" :value="selectedValue"></x-input>
+      <slot v-if="$slots.default"></slot>
+      <x-input v-else class="cascader-input" readonly :placeholder="placeholder" :value="selectedValue"></x-input>
     </span>
     <cascader-items slot="content" slot-scope="{ contentClose }"
-                    v-model="selectedItems" v-bind="$props"
-                    @closePopover="contentClose" @change="change">
+                    v-model="selectedNodes" v-bind="$props"
+                    @closePopover="contentClose"
+                    @change="change" @select="select"
+    >
     </cascader-items>
   </x-popover>
 </template>
@@ -36,7 +38,7 @@ export default {
   data() {
     return {
       popoverVisible: false,
-      selectedItems: [],
+      selectedNodes: [],
       defaultSelected: [],
       selectedValue: ''
     }
@@ -45,41 +47,61 @@ export default {
     this.setDefaultValue()
   },
   methods: {
-    change(data) {
-      this.selectedItems = data
-      data.forEach((item, index) => {
+    change(selectedNodes) {
+      this.selectedNodes = selectedNodes
+      selectedNodes.forEach((item, index) => {
         this.$set(this.newValue, index, item.value)
       })
       this.setDefaultSelected()
       this.getSelectedValue()
-      this.$emit('change', this.newValue)
+      this.$emit('change', this.newValue, this.selectedNodes)
+    },
+    select(selectedItem) {
+      if (this.lazyLoad) {
+        const lazyLoadResolve = (nodes) => {
+          this.setNewSource(nodes, selectedItem, this.source)
+          this.$emit('update:source', this.source)
+        }
+        this.lazyLoad(selectedItem, lazyLoadResolve)
+      }
+    },
+    setNewSource(nodes, selectedNode, source) {
+      source.forEach(item => {
+        if (item.id === selectedNode.id) {
+          this.$set(item, 'children', nodes)
+        } else {
+          if (item.children && item.children.length > 0) {
+            this.setNewSource(nodes, selectedNode, item.children)
+          }
+        }
+      })
     },
     setDefaultValue() {
       let {newValue, source} = this
       if (newValue.length > 0) {
-        this.getSelectedItems(source)
+        this.getSelectedNodes(source)
         this.setDefaultSelected()
         this.getSelectedValue()
       }
     },
     getSelectedValue() {
-      this.selectedValue = this.selectedItems.map(item => item.name).join(' / ')
+      this.selectedValue = this.selectedNodes.map(node => node.name).join(' / ')
     },
-    getSelectedItems(source) {
-      source.forEach(item => {
-        if (this.newValue.includes(item.value)) {
-          this.selectedItems.push(item)
+    getSelectedNodes(source) {
+      source.forEach(node => {
+        if (this.newValue.includes(node.value)) {
+          this.selectedNodes.push(node)
         }
-        if (item.children && item.children.length > 0) {
-          this.getSelectedItems(item.children)
+        if (node.children && node.children.length > 0) {
+          this.getSelectedNodes(node.children)
         }
       })
     },
-    setDefaultSelected(){
-      this.defaultSelected = JSON.parse(JSON.stringify(this.selectedItems))
+    setDefaultSelected() {
+      this.defaultSelected = JSON.parse(JSON.stringify(this.selectedNodes))
     },
     rollback() {
-      this.selectedItems = JSON.parse(JSON.stringify(this.defaultSelected))
+      this.selectedNodes = JSON.parse(JSON.stringify(this.defaultSelected))
     }
   }
 }

@@ -4,9 +4,9 @@ const cascaderMixins = {
       type: Array,
       default: () => []
     },
-    level:{
-      type:Number,
-      default:0
+    level: {
+      type: Number,
+      default: 0
     },
     source: {
       type: Array,
@@ -15,6 +15,9 @@ const cascaderMixins = {
     height: {
       type: [Number, String],
       default: 150
+    },
+    lazyLoad: {
+      type: Function
     }
   },
   computed: {
