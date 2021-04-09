@@ -9,3 +9,4 @@ title: Popover 弹出层
 | :-------------: |:-------------:| :-----:|:-----:|:-----:|
 | trigger | 弹出层的触发方式 |    String | click/hover | click 
 |placement|弹出层位置|String|top/right/left/bottom|top
+| contentClassName | 弹出层内容类名 |    String | -- | -- 
