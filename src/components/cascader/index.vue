@@ -4,7 +4,10 @@
     <slot v-if="$slots.default"></slot>
     <x-input v-else class="cascader-input" readonly></x-input>
     </span>
-    <cascader-items slot="content" v-bind="$props"></cascader-items>
+    <cascader-items slot="content" slot-scope="{ contentClose }"
+                    v-model="newValue" v-bind="$props"
+                    @closePopover="contentClose">
+    </cascader-items>
   </x-popover>
 </template>
 
@@ -25,7 +28,11 @@ export default {
   data() {
     return {
       popoverVisible: false,
+      selected: [],
     }
+  },
+  created(){
+    this.selected = JSON.parse(JSON.stringify(this.value));
   },
   methods: {}
 }

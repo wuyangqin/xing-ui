@@ -1,7 +1,7 @@
 [class^="xx-"], [class*=" xx-"] {
   margin: 0;
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 14px;
   font-family: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica,
   "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB",
   "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN",
@@ -16,6 +16,8 @@
 @main-theme-color: #87dfd6;
 @main-hover-color: lighten(@main-theme-color, 8%);
 @main-active-color: darken(@main-theme-color, 10%);
+@main-color-light: lighten(@main-theme-color, 25%);
+
 @black: #000;
 @white: #fff;
 @gray-1: #f7f8fa;
@@ -104,6 +106,7 @@
 // cascader
 @cascader-trigger-height: @item-height-regular;
 @cascader-popover-min-width: 60px;
+@cascader-active-color: @main-theme-color;
 
 // animate
 @animate-duration-regular: 250ms;
