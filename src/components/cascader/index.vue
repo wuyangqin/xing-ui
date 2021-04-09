@@ -1,12 +1,14 @@
 <template>
-  <x-popover class="xx-cascader" placement="bottom" content-class-name="cascader-popover">
+  <x-popover class="xx-cascader" placement="bottom"
+             content-class-name="cascader-popover"
+             @onClose="rollback">
     <span class="xx-cascader-trigger__wrapper">
     <slot v-if="$slots.default"></slot>
-    <x-input v-else class="cascader-input" readonly></x-input>
+    <x-input v-else class="cascader-input" readonly :placeholder="placeholder" :value="selectedValue"></x-input>
     </span>
     <cascader-items slot="content" slot-scope="{ contentClose }"
-                    v-model="newValue" v-bind="$props"
-                    @closePopover="contentClose">
+                    v-model="selectedItems" v-bind="$props"
+                    @closePopover="contentClose" @change="change">
     </cascader-items>
   </x-popover>
 </template>
@@ -25,16 +27,61 @@ export default {
     XInput,
     CascaderItems
   },
+  props: {
+    placeholder: {
+      type: String,
+      default: '请选择'
+    }
+  },
   data() {
     return {
       popoverVisible: false,
-      selected: [],
+      selectedItems: [],
+      defaultSelected: [],
+      selectedValue: ''
     }
   },
-  created(){
-    this.selected = JSON.parse(JSON.stringify(this.value));
+  created() {
+    this.setDefaultValue()
   },
-  methods: {}
+  methods: {
+    change(data) {
+      this.selectedItems = data
+      data.forEach((item, index) => {
+        this.$set(this.newValue, index, item.value)
+      })
+      this.setDefaultSelected()
+      this.getSelectedValue()
+      this.$emit('change', this.newValue)
+    },
+    setDefaultValue() {
+      let {newValue, source} = this
+      if (newValue.length > 0) {
+        this.getSelectedItems(source)
+        this.setDefaultSelected()
+        this.getSelectedValue()
+      }
+    },
+    getSelectedValue() {
+      this.selectedValue = this.selectedItems.map(item => item.name).join(' / ')
+    },
+    getSelectedItems(source) {
+      source.forEach(item => {
+        if (this.newValue.includes(item.value)) {
+          this.selectedItems.push(item)
+        }
+        if (item.children && item.children.length > 0) {
+          this.getSelectedItems(item.children)
+        }
+      })
+    },
+    setDefaultSelected(){
+      this.defaultSelected = JSON.parse(JSON.stringify(this.selectedItems))
+    },
+    rollback() {
+      this.selectedItems = JSON.parse(JSON.stringify(this.defaultSelected))
+    }
+  }
 }
 </script>
 
@@ -48,6 +95,7 @@ export default {
     .cascader-input .readonly {
       cursor: default;
       background: @white;
+      color: @gray-8;
 
       &:focus {
         border-color: @main-theme-color;

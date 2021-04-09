@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <cascader v-model="selected" :source="source">
+    <cascader v-model="selected" :source="source" @change="change">
 <!--      <button>点我</button>-->
     </cascader>
   </div>
@@ -17,6 +17,7 @@ export default {
   data() {
     return {
       visible: false,
+      // selected:['zhejiang','hangzhou','xiacheng'],
       selected:[],
       source: [{
         name: '浙江',
@@ -68,6 +69,11 @@ export default {
           }]
         }]
       }]
+    }
+  },
+  methods: {
+    change(e){
+      console.log(e);
     }
   }
 }
