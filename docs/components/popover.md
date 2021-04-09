@@ -10,3 +10,8 @@ title: Popover 弹出层
 | trigger | 弹出层的触发方式 |    String | click/hover | click 
 |placement|弹出层位置|String|top/right/left/bottom|top
 | contentClassName | 弹出层内容类名 |    String | -- | -- 
+
+### Events
+|事件名称| 说明 |  |  回调参数  | |
+| :-------------: |:----:| :---------------------:| :---------------------:| :--:|
+| onClose | 弹出层关闭的回调 |  |  -- |

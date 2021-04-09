@@ -120,6 +120,7 @@ export default {
       if (this.trigger === 'click') {
         document.removeEventListener('click', this.toggleHandler)
       }
+      this.$emit('onClose')
     },
     onHover() {
       this.$nextTick(() => {
