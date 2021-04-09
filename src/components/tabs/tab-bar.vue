@@ -1,5 +1,5 @@
 <template>
-  <div class="x-tab__active-bar" :class="tabNavWrapperClasses" :style="barStyle"></div>
+  <div class="xx-tab__active-bar" :class="tabNavWrapperClasses" :style="barStyle"></div>
 </template>
 
 <script>
@@ -40,9 +40,9 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 @import url('../../css/xing-ui');
-.x-tab__active-bar {
+.xx-tab__active-bar {
   position: absolute;
   bottom: 0;
   z-index: 99;

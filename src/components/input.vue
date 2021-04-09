@@ -1,5 +1,5 @@
 <template>
-  <div class="x-input-wrapper" :class="{error}">
+  <div class="xx-input-wrapper" :class="{error}">
     <input :value="value" type="text"
            :class="{ disabled, readonly }"
            :disabled="disabled"
@@ -48,9 +48,9 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 @import url('../css/xing-ui');
-.x-input-wrapper {
+.xx-input-wrapper {
   display: inline-block;
   font-size: @font-size-md;
   > input {
@@ -91,6 +91,7 @@ export default {
     .icon-error {
       width: 1.2em;
       height: 1.2em;
+      color: @error;
     }
   }
 }

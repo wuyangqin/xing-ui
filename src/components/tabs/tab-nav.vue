@@ -34,7 +34,7 @@ export default {
       let { name, disabled } = nav
       let { selectTab } = this.tabsBus
       return [
-          `x-tab-nav__item-${name}`,
+          `xx-tab-nav__item-${name}`,
           selectTab === name ? 'nav-active' : '',
           disabled ? 'nav-disabled' : ''
       ]
@@ -64,7 +64,7 @@ export default {
       const navClass = tabNavClasses(pane)
       const label = pane.$slots.label || pane.label
       return (
-          <div class={['x-tab-nav__item', ...navClass]}
+          <div class={['xx-tab-nav__item', ...navClass]}
                key={index}
                ref={`tab-${pane.name}`}
                on-click={() => {clickNavItem(pane, index)}}
@@ -74,8 +74,8 @@ export default {
       )
     })
     return (
-        <div class="x-tab-nav__wrapper">
-          <div class={['x-tab-nav__scroll', 'flex-box', ...tabNavWrapperClasses]}>
+        <div class="xx-tab-nav__wrapper">
+          <div class={['xx-tab-nav__scroll', 'flex-box', ...tabNavWrapperClasses]}>
             <x-tab-bar></x-tab-bar>
             {tabLabels}
           </div>

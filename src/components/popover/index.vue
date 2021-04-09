@@ -1,9 +1,9 @@
 <template>
-  <div class="x-popover-wrapper" ref="popover">
-    <div class="x-popover-content" :class="contentClasses" ref="content" v-if="visible" @click.stop>
+  <div class="xx-popover-wrapper" ref="popover">
+    <div class="xx-popover-content" :class="contentClasses" ref="content" v-if="visible" @click.stop>
       <slot name="content" :contentClose="contentClose"></slot>
     </div>
-    <div class="x-popover-trigger" ref="trigger">
+    <div class="xx-popover-trigger" ref="trigger">
       <slot></slot>
     </div>
   </div>
@@ -146,15 +146,15 @@ export default {
 <style lang="less">
 @import url('../../css/xing-ui.less');
 
-.x-popover-wrapper {
+.xx-popover-wrapper {
   position: relative;
   display: inline-block;
   font-size: @font-size-md;
 
-  .x-popover-trigger { display: inline-block; }
+  .xx-popover-trigger { display: inline-block; }
 }
 
-.x-popover-content {
+.xx-popover-content {
   position: absolute;
   padding: @padding-sm 1em;
   min-width: 150px;

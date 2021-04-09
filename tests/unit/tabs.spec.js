@@ -79,7 +79,7 @@ describe('Tabs和tab', () => {
         el: div
       })
       setTimeout(() => {
-        const tabNav = vm.$el.querySelector('.x-tab-nav__item')
+        const tabNav = vm.$el.querySelector('.xx-tab-nav__item')
         expect(tabNav.innerHTML).to.eq('kaixin')
         vm.$el.remove()
         vm.$destroy()
@@ -97,7 +97,7 @@ describe('Tabs和tab', () => {
       })
       setTimeout(() => {
         const tabNav = vm.$refs.tabs.$refs.tabNav.$refs['tab-kaixin']
-        expect(tabNav.classList.contains('x-tab-nav__item-kaixin')).to.eq(true)
+        expect(tabNav.classList.contains('xx-tab-nav__item-kaixin')).to.eq(true)
         vm.$el.remove()
         vm.$destroy()
         done()
@@ -113,7 +113,7 @@ describe('Tabs和tab', () => {
         el: div
       })
       setTimeout(() => {
-        const tabNav = vm.$el.querySelector('.x-tab-nav__item')
+        const tabNav = vm.$el.querySelector('.xx-tab-nav__item')
         expect(tabNav.classList.contains('nav-disabled')).to.eq(true)
         const tabsNode = vm.$refs.tabs
         const callback = sinon.fake()

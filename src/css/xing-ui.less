@@ -1,3 +1,18 @@
+[class^="xx-"], [class*=" xx-"] {
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica,
+  "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB",
+  "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans CN",
+  "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
+  SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+  outline: none;
+  ul,
+  ol {
+    list-style: none;
+  }
+}
 @main-theme-color: #87dfd6;
 @main-hover-color: lighten(@main-theme-color, 8%);
 @main-active-color: darken(@main-theme-color, 10%);
@@ -86,19 +101,12 @@
 //popover
 @popover-shadow: 0 2px 8px rgba(0,0,0,.05);
 
-.icon-error, .error-message {
-  fill: currentColor !important;
-  color: @error;
-  vertical-align: middle;
-}
-
-.flex-box {
-  display: flex;
-  align-items: center;
-}
+// cascader
+@cascader-trigger-height: @item-height-regular;
+@cascader-popover-min-width: 60px;
 
 // animate
-@animate-duration-regular: 300ms;
+@animate-duration-regular: 250ms;
 @keyframes slide-up {
   0% {opacity: 0; transform: translateY(100%);}
   100% {opacity: 1;transform: translateY(0%);}
@@ -116,3 +124,50 @@
   100% {opacity: 0;}
 }
 
+
+// overlay
+@overlay-background: fade_out(black, 0.6);
+.xx-common-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: @overlay-background;
+  z-index: 1005;
+}
+
+
+.icon-error, .error-message {
+  fill: currentColor !important;
+  color: @error;
+  vertical-align: middle;
+}
+
+.flex-box {
+  display: flex;
+  align-items: center;
+}
+
+.x-scrollbar {
+   &::-webkit-scrollbar {
+     width: 6px;
+     background: transparent;
+   }
+   &::-webkit-scrollbar-thumb {
+     background: transparent;
+     border-radius: 4px;
+   }
+
+   &:hover::-webkit-scrollbar-thumb {
+     @media (any-hover: hover) {
+       background: hsla(0, 0%, 40%, 0.3);
+     }
+   }
+
+   &:hover::-webkit-scrollbar-track {
+     @media (any-hover: hover) {
+       background: hsla(0, 0%, 53%, 0.1);
+     }
+   }
+ }

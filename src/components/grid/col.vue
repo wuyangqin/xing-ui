@@ -1,5 +1,5 @@
 <template>
-  <div class="col" :class="colClasses" :style="colStyle">
+  <div class="xx-col" :class="colClasses" :style="colStyle">
     <slot></slot>
   </div>
 </template>
@@ -80,7 +80,7 @@ export default {
 
 <style scoped lang="less">
 @import url('../../css/xing-ui');
-.col {
+.xx-col {
   border-radius: 4px;
   box-sizing: border-box;
 }

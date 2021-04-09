@@ -1,5 +1,5 @@
 <template>
-  <div class="x-container" :class="containerClasses">
+  <div class="xx-container" :class="containerClasses">
     <slot></slot>
   </div>
 </template>
@@ -40,8 +40,8 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-.x-container {
+<style lang="less">
+.xx-container {
   flex-grow: 1;
   display: flex;
   flex-direction: column;

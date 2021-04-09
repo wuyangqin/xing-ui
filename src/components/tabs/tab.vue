@@ -1,5 +1,5 @@
 <template>
-  <div class="x-tab__item"
+  <div class="xx-tab__item"
        v-show="tabsBus.selectTab === name">
     <slot></slot>
   </div>
@@ -9,8 +9,6 @@
 
 export default {
   name: 'XTab',
-  components: {
-  },
   inject: ['tabsBus'],
   props: {
     label: {

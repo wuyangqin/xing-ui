@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .xx-icon {
   width: 1em;
   height: 1em;

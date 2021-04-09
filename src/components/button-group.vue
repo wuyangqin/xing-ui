@@ -1,5 +1,5 @@
 <template>
-  <div class="x-button-group">
+  <div class="xx-button-group">
     <slot></slot>
   </div>
 </template>
@@ -19,10 +19,10 @@ export default {
 
 <style lang="less">
 @import url('../css/xing-ui');
-.x-button-group {
+.xx-button-group {
   display: inline-flex;
   vertical-align: middle;
-  .x-button {
+  .xx-button {
     border-radius: 0;
     &:not(:first-child) {
       margin-left: -1px;

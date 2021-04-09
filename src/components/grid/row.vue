@@ -1,5 +1,5 @@
 <template>
-  <div class="row" :class="rowClass" :style="rowStyle">
+  <div class="xx-row" :class="rowClass" :style="rowStyle">
     <slot></slot>
   </div>
 </template>
@@ -42,8 +42,8 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-.row {
+<style lang="less">
+.xx-row {
   display: flex;
   flex-wrap: wrap;
   &.align-left { justify-content: flex-start }

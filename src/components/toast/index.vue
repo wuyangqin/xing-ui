@@ -1,5 +1,5 @@
 <template>
-  <div class="toast-wrapper" :class="toastClasses">
+  <div class="xx-toast-wrapper" :class="toastClasses">
     <div class="toast flex-box" ref="toast">
       <div class="message">
         <div v-if="enableHtml" v-html="$slots.default"></div>
@@ -94,9 +94,9 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 @import url('../../css/xing-ui');
-.toast-wrapper {
+.xx-toast-wrapper {
   position: fixed;
   left: 50%;
   z-index: 1001;

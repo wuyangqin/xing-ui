@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <cascader :source="source">
-      <button>点我</button>
+<!--      <button>点我</button>-->
     </cascader>
   </div>
 </template>
@@ -17,6 +17,7 @@ export default {
   data() {
     return {
       visible: false,
+      selected:[],
       source: [{
         name: '浙江',
         children: [

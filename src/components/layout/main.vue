@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .container-main {
   flex-grow: 1;
 }

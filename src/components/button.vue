@@ -1,5 +1,5 @@
 <template>
-  <button class="x-button" :class="buttonClasses" @click="$emit('click')">
+  <button class="xx-button" :class="buttonClasses" @click="$emit('click')">
     <x-icon class="icon" v-if="icon && !loading" :name="icon"></x-icon>
     <x-icon class="icon loading" v-if="loading" name="loading"></x-icon>
     <span class="content">
@@ -43,13 +43,13 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import url('../css/xing-ui');
 @keyframes spin {
   0% { transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
 }
-.x-button {
+.xx-button {
   padding: 0 1em; font-size: @font-size-md; height: @item-height-regular;
   border-radius: @border-radius; background: @main-theme-color; border: none; color: #fff;
   display: inline-flex; justify-content: center; align-items: center;
