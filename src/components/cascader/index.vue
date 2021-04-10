@@ -9,7 +9,7 @@
                v-model="selectedValue"
                readonly
                right-icon="down"
-               clearable
+               :clearable="clearable"
                :placeholder="placeholder"
                @clear="clearSelected"
       >
@@ -32,7 +32,7 @@ import XPopover from '../popover'
 import CascaderNodes from './cascaderNodes'
 import XInput from '../input'
 import XIcon from '../icon'
-import cascaderMixins from "@/components/cascader/cascaderMixins";
+import cascaderMixins from './cascaderMixins';
 
 export default {
   name: 'x-cascader',

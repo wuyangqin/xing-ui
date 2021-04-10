@@ -20,7 +20,7 @@
 
 <script>
 import XIcon from '../icon'
-import cascaderMixins from "@/components/cascader/cascaderMixins";
+import cascaderMixins from './cascaderMixins';
 
 export default {
   name: 'xCascaderItems',
