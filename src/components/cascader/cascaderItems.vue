@@ -6,10 +6,12 @@
           @click="onClickLabel(node)">
         <span>{{ node.name }}</span>
         <x-icon v-if="rightArrowVisible(node)" name="right"></x-icon>
+        <x-icon v-if="loadingNodeValue === node.value" name="loading" class="xx-loading"></x-icon>
       </li>
     </ul>
     <div class="xx-cascader-item-right" v-if="rightItems">
       <x-cascader-items v-model="newValue" :source="rightItems" :level="level+1" :lazy-load="lazyLoad"
+                        :loading-node-value="loadingNodeValue"
                         @closePopover="$listeners.closePopover" @change="change" @select="select($event)">
       </x-cascader-items>
     </div>
@@ -25,6 +27,12 @@ export default {
   mixins: [cascaderMixins],
   components: {
     XIcon
+  },
+  props:{
+    loadingNodeValue:{
+      type:String,
+      default:''
+    }
   },
   computed: {
     currentItem() {
@@ -51,7 +59,7 @@ export default {
       }
     },
     rightArrowVisible(node) {
-      return this.lazyLoad ? !node.isLeaf : node.children && node.children.length > 0
+      return this.lazyLoad ? !node.isLeaf && this.loadingNodeValue!==node.value : node.children && node.children.length > 0
     },
     onClickLabel(node) {
       this.$parent.selectedNode = null;
@@ -108,7 +116,7 @@ export default {
       }
 
       .xx-icon {
-        font-size: @font-size-sm13;
+        font-size: @font-size-sm;
         color: @gray-5 !important;
       }
 

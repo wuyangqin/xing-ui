@@ -1,17 +1,20 @@
 <template>
   <x-popover class="xx-cascader" placement="bottom"
-             content-class-name="cascader-popover"
+             :content-class-name="`cascader-popover ${sourceLoading?'loading':''}`"
              @onClose="rollback">
     <span class="xx-cascader-trigger__wrapper">
       <slot v-if="$slots.default"></slot>
       <x-input v-else class="cascader-input" readonly :placeholder="placeholder" :value="selectedValue"></x-input>
     </span>
-    <cascader-items slot="content" slot-scope="{ contentClose }"
-                    v-model="selectedNodes" v-bind="$props"
-                    @closePopover="contentClose"
-                    @change="change" @select="select"
-    >
-    </cascader-items>
+    <template slot="content" slot-scope="{ contentClose }">
+      <x-icon v-if="sourceLoading" name="loading" class="xx-loading"></x-icon>
+      <cascader-items v-model="selectedNodes" v-bind="$props"
+                      :loading-node-value="loadingNodeValue"
+                      @closePopover="contentClose"
+                      @change="change" @select="select"
+      >
+      </cascader-items>
+    </template>
   </x-popover>
 </template>
 
@@ -19,6 +22,7 @@
 import XPopover from '../popover'
 import CascaderItems from './cascaderItems'
 import XInput from '../input'
+import XIcon from '../icon'
 import cascaderMixins from "@/components/cascader/cascaderMixins";
 
 export default {
@@ -26,6 +30,7 @@ export default {
   mixins: [cascaderMixins],
   components: {
     XPopover,
+    XIcon,
     XInput,
     CascaderItems
   },
@@ -35,11 +40,17 @@ export default {
       default: '请选择'
     }
   },
+  computed:{
+    sourceLoading () {
+      return this.source.length===0 && this.lazyLoad
+    }
+  },
   data() {
     return {
       popoverVisible: false,
       selectedNodes: [],
       defaultSelected: [],
+      loadingNodeValue: '',
       selectedValue: ''
     }
   },
@@ -56,13 +67,15 @@ export default {
       this.getSelectedValue()
       this.$emit('change', this.newValue, this.selectedNodes)
     },
-    select(selectedItem) {
+    select(selectedNode) {
       if (this.lazyLoad) {
+        this.loadingNodeValue = selectedNode.value
         const lazyLoadResolve = (nodes) => {
-          this.setNewSource(nodes, selectedItem, this.source)
+          this.loadingNodeValue = ''
+          this.setNewSource(nodes, selectedNode, this.source)
           this.$emit('update:source', this.source)
         }
-        this.lazyLoad(selectedItem, lazyLoadResolve)
+        this.lazyLoad(selectedNode, lazyLoadResolve)
       }
     },
     setNewSource(nodes, selectedNode, source) {
@@ -131,5 +144,11 @@ export default {
   padding: 0;
   max-width: 100%;
   min-width: @cascader-popover-min-width;
+  &.loading {
+    height: 30px;
+    &:extend(.flex-box);
+    justify-content: center;
+    .xx-icon { color: @gray-6; }
+  }
 }
 </style>

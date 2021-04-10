@@ -105,7 +105,7 @@
 
 // cascader
 @cascader-trigger-height: @item-height-regular;
-@cascader-popover-min-width: 60px;
+@cascader-popover-min-width: 70px;
 @cascader-active-color: @main-theme-color;
 
 // animate
@@ -125,6 +125,10 @@
 @keyframes fade-out {
   0% {opacity: 1; }
   100% {opacity: 0;}
+}
+@keyframes spin {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
 }
 
 
@@ -152,7 +156,10 @@
   align-items: center;
 }
 
-.x-scrollbar {
+.xx-loading {
+  animation: spin 2s infinite linear;
+}
+.xx-scrollbar {
    &::-webkit-scrollbar {
      width: 6px;
      background: transparent;

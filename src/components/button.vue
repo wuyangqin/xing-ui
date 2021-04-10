@@ -1,7 +1,7 @@
 <template>
   <button class="xx-button" :class="buttonClasses" @click="$emit('click')">
     <x-icon class="icon" v-if="icon && !loading" :name="icon"></x-icon>
-    <x-icon class="icon loading" v-if="loading" name="loading"></x-icon>
+    <x-icon class="icon xx-loading" v-if="loading" name="loading"></x-icon>
     <span class="content">
       <slot></slot>
     </span>
@@ -45,10 +45,6 @@ export default {
 
 <style lang="less">
 @import url('../css/xing-ui');
-@keyframes spin {
-  0% { transform: rotate(0deg) }
-  100% { transform: rotate(360deg) }
-}
 .xx-button {
   padding: 0 1em; font-size: @font-size-md; height: @item-height-regular;
   border-radius: @border-radius; background: @main-theme-color; border: none; color: #fff;
@@ -64,9 +60,6 @@ export default {
   &.icon-right {
     > .icon { order: 2; fill:currentColor; color: #fff; margin-left: .3em; margin-right: 0}
     > .content { order: 1 }
-  }
-  .loading {
-    animation: spin 2s infinite linear;
   }
 }
 </style>
