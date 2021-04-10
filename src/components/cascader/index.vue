@@ -4,23 +4,32 @@
              @onClose="rollback">
     <span class="xx-cascader-trigger__wrapper">
       <slot v-if="$slots.default"></slot>
-      <x-input v-else class="cascader-input" readonly :placeholder="placeholder" :value="selectedValue"></x-input>
+      <x-input class="cascader-input"
+               :class="{ 'clear-visible': selectedValue.length > 0 && clearable }"
+               v-model="selectedValue"
+               readonly
+               right-icon="down"
+               clearable
+               :placeholder="placeholder"
+               @clear="clearSelected"
+      >
+      </x-input>
     </span>
     <template slot="content" slot-scope="{ contentClose }">
       <x-icon v-if="sourceLoading" name="loading" class="xx-loading"></x-icon>
-      <cascader-items v-model="selectedNodes" v-bind="$props"
+      <cascader-nodes v-model="selectedNodes" v-bind="$props"
                       :loading-node-value="loadingNodeValue"
                       @closePopover="contentClose"
                       @change="change" @select="select"
       >
-      </cascader-items>
+      </cascader-nodes>
     </template>
   </x-popover>
 </template>
 
 <script>
 import XPopover from '../popover'
-import CascaderItems from './cascaderItems'
+import CascaderNodes from './cascaderNodes'
 import XInput from '../input'
 import XIcon from '../icon'
 import cascaderMixins from "@/components/cascader/cascaderMixins";
@@ -32,17 +41,21 @@ export default {
     XPopover,
     XIcon,
     XInput,
-    CascaderItems
+    CascaderNodes
   },
   props: {
     placeholder: {
       type: String,
       default: '请选择'
+    },
+    clearable: {
+      type: Boolean,
+      default: false
     }
   },
-  computed:{
-    sourceLoading () {
-      return this.source.length===0 && this.lazyLoad
+  computed: {
+    sourceLoading() {
+      return this.source.length === 0 && this.lazyLoad
     }
   },
   data() {
@@ -115,6 +128,10 @@ export default {
     },
     rollback() {
       this.selectedNodes = JSON.parse(JSON.stringify(this.defaultSelected))
+    },
+    clearSelected() {
+      this.selectedNodes = []
+      this.$emit('clear')
     }
   }
 }
@@ -127,14 +144,26 @@ export default {
   position: relative;
 
   &-trigger__wrapper {
-    .cascader-input .readonly {
-      cursor: default;
-      background: @white;
-      color: @gray-8;
+    .cascader-input {
+      .readonly {
+        cursor: default;
+        background: @white;
+        color: @gray-8;
 
-      &:focus {
-        border-color: @main-theme-color;
-        box-shadow: none;
+        &:focus {
+          border-color: @main-theme-color;
+          box-shadow: none;
+        }
+      }
+
+      .clear-icon.visible { display: none !important; }
+
+      @media (any-hover: hover) {
+        &:hover {
+          .clear-icon.visible { display: inline-block !important; }
+
+          &.clear-visible .right-icon {display: none;}
+        }
       }
     }
   }
@@ -144,10 +173,12 @@ export default {
   padding: 0;
   max-width: 100%;
   min-width: @cascader-popover-min-width;
+
   &.loading {
     height: 30px;
     &:extend(.flex-box);
     justify-content: center;
+
     .xx-icon { color: @gray-6; }
   }
 }

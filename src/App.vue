@@ -6,8 +6,8 @@
       <!--      <button>点我</button>-->
     </cascader>
     <div style="margin-top: 30px;">
-      <cascader v-model="selected" :source.sync="source1" clear
-                @change="change">
+      <cascader v-model="selected" :source.sync="source1" clearable
+                @change="change" @clear="clear">
       </cascader>
     </div>
     <x-input v-model="value" right-icon="down">
@@ -127,6 +127,9 @@ export default {
     change(value, selectedNodes) {
       console.log(value);
       console.log(selectedNodes);
+    },
+    clear(){
+      console.log('clear');
     }
   }
 }

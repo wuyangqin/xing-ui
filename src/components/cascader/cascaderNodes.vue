@@ -28,10 +28,10 @@ export default {
   components: {
     XIcon
   },
-  props:{
-    loadingNodeValue:{
-      type:String,
-      default:''
+  props: {
+    loadingNodeValue: {
+      type: String,
+      default: ''
     }
   },
   computed: {
@@ -59,7 +59,7 @@ export default {
       }
     },
     rightArrowVisible(node) {
-      return this.lazyLoad ? !node.isLeaf && this.loadingNodeValue!==node.value : node.children && node.children.length > 0
+      return this.lazyLoad ? !node.isLeaf && this.loadingNodeValue !== node.value : node.children && node.children.length > 0
     },
     onClickLabel(node) {
       this.$parent.selectedNode = null;
@@ -117,7 +117,7 @@ export default {
 
       .xx-icon {
         font-size: @font-size-sm;
-        color: @gray-5 !important;
+        color: @icon-color-light !important;
       }
 
       &.active {
