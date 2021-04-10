@@ -2,8 +2,6 @@
 import Vue from 'vue'
 import hljs from 'highlight.js'
 import toast from '../../src/components/plugin/toast'
-// 环境判断
-import { isMobile } from '../../src/utils/env'
 
 //样式文件
 import 'highlight.js/styles/nord.css'
@@ -21,6 +19,13 @@ export default ({
                   // siteData // 站点元数据
                 }) => {
   Vue.use(toast)
-  Vue.prototype.isMobile = isMobile
+  Vue.mixin({
+    mounted() {
+      // 环境判断
+      import('../../src/utils/env').then(function(m) {
+        Vue.prototype.isMobile = m.isMobile
+      });
+    },
+  });
 // ...做一些其他的应用级别的优化
 }
