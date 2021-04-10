@@ -56,6 +56,58 @@ export default {
 }
 </script>
     `
+  },
+  {
+    name: 'clearable',
+    title: '可以清除',
+    description: `通过设置 <code>clearable</code> 在输入过程中展示清除图标`,
+    code: `
+<x-input v-model="value" placeholder="显示清除图标" clearable></x-input>
+
+<script>
+export default {
+  data() {
+    return {
+      value: ''
+    }
+  }
+}
+</script>
+    `
+  },
+  {
+    name: 'icon',
+    title: '显示左右图标',
+    description: `通过 <code>left-icon</code> 和 <code>right-icon</code> 属性或具名插槽 配置输入框两侧的图标`,
+    code: `
+<div>
+  <p>属性设置</p>
+  <x-input v-model="value1" left-icon="setting"></x-input>
+  <x-input v-model="value2" right-icon="down"></x-input>
+</div>
+<div>
+  <p>插槽设置</p>
+  <x-input v-model="value3">
+    <x-icon name="setting" slot="left-icon"></x-icon>
+  </x-input>
+  <x-input v-model="value4">
+    <x-icon name="down" slot="right-icon"></x-icon>
+  </x-input>
+</div>
+
+<script>
+export default {
+  data() {
+    return {
+      value1: '',
+      value2: '',
+      value3: '',
+      value4: ''
+    }
+  }
+}
+</script>
+    `
   }
 ]
 
