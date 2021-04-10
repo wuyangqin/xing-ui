@@ -4,9 +4,10 @@
              @onClose="rollback">
     <span class="xx-cascader-trigger__wrapper">
       <slot v-if="$slots.default"></slot>
-      <x-input class="cascader-input"
-               :class="{ 'clear-visible': selectedValue.length > 0 && clearable }"
-               v-model="selectedValue"
+      <x-input v-else
+               class="cascader-input"
+               :class="{ 'clear-visible': selectedLabels.length > 0 && clearable }"
+               v-model="selectedLabels"
                readonly
                right-icon="down"
                :clearable="clearable"
@@ -64,7 +65,7 @@ export default {
       selectedNodes: [],
       defaultSelected: [],
       loadingNodeValue: '',
-      selectedValue: ''
+      selectedLabels: ''
     }
   },
   created() {
@@ -92,9 +93,9 @@ export default {
       }
     },
     setNewSource(nodes, selectedNode, source) {
-      const {childrenName} = this
+      const {childrenName, valueName} = this
       source.forEach(item => {
-        if (item.id === selectedNode.id) {
+        if (item[valueName] === selectedNode[valueName]) {
           this.$set(item, childrenName, nodes)
         } else {
           if (item[childrenName] && item[childrenName].length > 0) {
@@ -112,7 +113,7 @@ export default {
       }
     },
     getSelectedValue() {
-      this.selectedValue = this.selectedNodes.map(node => node[this.labelName]).join(' / ')
+      this.selectedLabels = this.selectedNodes.map(node => node[this.labelName]).join(' / ')
     },
     getSelectedNodes(source) {
       const {childrenName, valueName} = this
