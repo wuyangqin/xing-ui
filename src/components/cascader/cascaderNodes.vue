@@ -72,7 +72,7 @@ export default {
     changeHandler(node) {
       const {childrenName, lazyLoad, isLeafName} = this
       const {closePopover} = this.$listeners
-      if (!node[childrenName] || node[childrenName].length === 0) {
+      if (!node[childrenName] || node[childrenName].length === 0 || node[isLeafName]) {
         if (!lazyLoad || node[isLeafName]) {
           closePopover()
           this.change()

@@ -24,7 +24,7 @@ const cascaderMixins = {
       default: () => {
         return {
           value: '',
-          name: '',
+          label: '',
           children: '',
           isLeaf: ''
         }
@@ -50,7 +50,7 @@ const cascaderMixins = {
       return this.options.isLeaf || 'isLeaf'
     },
     labelName() {
-      return this.options.name || 'label'
+      return this.options.label || 'label'
     }
   }
 }

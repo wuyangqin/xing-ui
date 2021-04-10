@@ -18,7 +18,7 @@
     </span>
     <template slot="content" slot-scope="{ contentClose }">
       <x-icon v-if="sourceLoading" name="loading" class="xx-loading"></x-icon>
-      <cascader-nodes v-model="selectedNodes" v-bind="$props"
+      <cascader-nodes v-model="selectedNodes" v-bind="$props" ref="cascaderNodes"
                       :loading-node-value="loadingNodeValue"
                       @closePopover="contentClose"
                       @change="change" @select="select"
