@@ -15,16 +15,19 @@
       <span class="error-message">{{ error }}</span>
     </template>
     <div v-if="hasRightIcon" ref="rightIcons" class="input-icons right">
-      <x-icon v-if="rightIcon && !$slots['right-icon']" class="right-icon" :name="rightIcon"></x-icon>
+      <x-icon v-if="rightIcon && !$slots['right-icon']"
+              class="right-icon" :name="rightIcon">
+      </x-icon>
       <slot v-if="$slots['right-icon']" name="right-icon"></slot>
       <x-icon v-if="clearable" class="clear-icon"
               :class="{'visible': clearIconVisible}"
               name="close-fill"
-              @click="clearValue"></x-icon>
+              @click="clearValue">
+      </x-icon>
     </div>
     <div v-if="hasLeftIcon" class="input-icons left">
       <slot v-if="$slots['left-icon']" name="left-icon"></slot>
-      <x-icon v-else :name="leftIcon"></x-icon>
+      <x-icon v-else :name="leftIcon" class="left-icon"></x-icon>
     </div>
   </div>
 </template>

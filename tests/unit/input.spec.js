@@ -3,6 +3,7 @@ import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import {shallowMount, mount} from '@vue/test-utils'
 import Input from '../../src/components/input'
+import DemoClear from '../demo/demo-input-clear'
 
 chai.use(sinonChai)
 
@@ -63,6 +64,37 @@ describe('Input', () => {
       const inputElement = wrapper.vm.$el.querySelector('input')
       expect(inputElement.placeholder).to.equal('请输入内容')
     })
+    it('可以设置左右icon',()=>{
+      wrapper = mount(Input, {
+        propsData: {
+          rightIcon: 'down',
+          leftIcon: 'check'
+        }
+      })
+      const em = wrapper.vm.$el
+      const rightIcon = em.querySelector('.right-icon').querySelector('use')
+      const leftIcon = em.querySelector('.left-icon').querySelector('use')
+      expect(rightIcon.getAttribute('xlink:href')).to.equal('#x-down')
+      expect(leftIcon.getAttribute('xlink:href')).to.equal('#x-check')
+    })
+  })
+  describe('slots',()=>{
+    let wrapper
+    afterEach(()=>{
+      wrapper.destroy()
+    })
+    it('left-icon && right-icon',() => {
+      wrapper = mount(Input, {
+        slots: {
+          ['right-icon']: 'right',
+          ['left-icon']: 'left'
+        }
+      })
+      const leftIconSlot = wrapper.find('.left')
+      const rightIconSlot = wrapper.find('.right')
+      expect(leftIconSlot.text()).to.eq('left')
+      expect(rightIconSlot.text()).to.eq('right')
+    })
   })
   describe('Events', () => {
     it('支持 change input focus blur事件', () => {
@@ -82,6 +114,32 @@ describe('Input', () => {
         expect(callback).to.have.been.calledWith('hi')
         wrapper.destroy()
       })
+    })
+  })
+  describe('设置clearable 及 触发clear事件',() =>{
+    let wrapper
+    beforeEach(() => {
+      wrapper = mount(DemoClear)
+      wrapper.find('input').setValue('开心')
+    })
+    afterEach(() => {
+      wrapper.destroy()
+    })
+    it('可以设置clearable', () => {
+      const vm = wrapper.vm
+      let valueBeforeClear = vm.inputValue
+      const clearIcon = wrapper.find('.clear-icon')
+      expect(clearIcon.exists()).to.eq(true)
+      wrapper.find('.clear-icon').trigger('click')
+      expect(valueBeforeClear).to.eq('开心')
+      expect(vm.inputValue).to.eq('')
+    })
+    it('点击清除按钮 触发clear事件',()=>{
+      const demoInput = wrapper.vm.$refs.demoInput
+      const callback = sinon.fake()
+      demoInput.$on('clear',callback)
+      wrapper.find('.clear-icon').trigger('click')
+      expect(callback).to.have.been.called
     })
   })
 })
