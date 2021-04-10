@@ -18,6 +18,17 @@ const cascaderMixins = {
     },
     lazyLoad: {
       type: Function
+    },
+    options: {
+      type: Object,
+      default: () => {
+        return {
+          value: '',
+          name: '',
+          children: '',
+          isLeaf: ''
+        }
+      }
     }
   },
   computed: {
@@ -28,8 +39,20 @@ const cascaderMixins = {
       set: function (value) {
         this.$emit('input', value)
       }
+    },
+    valueName() {
+      return this.options.value || 'value'
+    },
+    childrenName() {
+      return this.options.children || 'children'
+    },
+    isLeafName() {
+      return this.options.isLeaf || 'isLeaf'
+    },
+    labelName() {
+      return this.options.name || 'label'
     }
-  },
+  }
 }
 
 export default cascaderMixins

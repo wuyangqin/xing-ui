@@ -74,7 +74,7 @@ export default {
     change(selectedNodes) {
       this.selectedNodes = selectedNodes
       selectedNodes.forEach((item, index) => {
-        this.$set(this.newValue, index, item.value)
+        this.$set(this.newValue, index, item[this.valueName])
       })
       this.setDefaultSelected()
       this.getSelectedValue()
@@ -82,7 +82,7 @@ export default {
     },
     select(selectedNode) {
       if (this.lazyLoad) {
-        this.loadingNodeValue = selectedNode.value
+        this.loadingNodeValue = selectedNode[this.valueName]
         const lazyLoadResolve = (nodes) => {
           this.loadingNodeValue = ''
           this.setNewSource(nodes, selectedNode, this.source)
@@ -92,12 +92,13 @@ export default {
       }
     },
     setNewSource(nodes, selectedNode, source) {
+      const {childrenName} = this
       source.forEach(item => {
         if (item.id === selectedNode.id) {
-          this.$set(item, 'children', nodes)
+          this.$set(item, childrenName, nodes)
         } else {
-          if (item.children && item.children.length > 0) {
-            this.setNewSource(nodes, selectedNode, item.children)
+          if (item[childrenName] && item[childrenName].length > 0) {
+            this.setNewSource(nodes, selectedNode, item[childrenName])
           }
         }
       })
@@ -111,15 +112,16 @@ export default {
       }
     },
     getSelectedValue() {
-      this.selectedValue = this.selectedNodes.map(node => node.name).join(' / ')
+      this.selectedValue = this.selectedNodes.map(node => node[this.labelName]).join(' / ')
     },
     getSelectedNodes(source) {
+      const {childrenName, valueName} = this
       source.forEach(node => {
-        if (this.newValue.includes(node.value)) {
+        if (this.newValue.includes(node[valueName])) {
           this.selectedNodes.push(node)
         }
-        if (node.children && node.children.length > 0) {
-          this.getSelectedNodes(node.children)
+        if (node[childrenName] && node[childrenName].length > 0) {
+          this.getSelectedNodes(node[childrenName])
         }
       })
     },

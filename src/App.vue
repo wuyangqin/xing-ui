@@ -7,6 +7,7 @@
     </cascader>
     <div style="margin-top: 30px;">
       <cascader v-model="selected" :source.sync="source1" clearable
+                :options="{children:'sub'}"
                 @change="change" @clear="clear">
       </cascader>
     </div>
@@ -14,6 +15,7 @@
       <x-icon name="check" slot="right-icon"></x-icon>
 <!--      <div slot="right-icon">2323</div>-->
     </x-input>
+    {{value}}
     <x-input v-model="value" right-icon="down"></x-input>
     <x-input v-model="value" left-icon="down" clearable></x-input>
     <x-input v-model="value" left-icon="close">
@@ -36,7 +38,7 @@ const ajax = function (id = 0) {
       if (item.parent_id === id) {
         const {id, parent_id, name, value} = item
         const isLeaf = db.filter(node => node.parent_id === id).length === 0
-        result.push({id, parent_id, name, value, isLeaf})
+        result.push({id, parent_id, label:name, value, isLeaf})
       }
     })
     setTimeout(() => {
@@ -68,52 +70,52 @@ export default {
       this.source = result;
     })
     this.source1 = [{
-      name: '浙江',
+      label: '浙江',
       value: 'zhejiang',
-      children: [
+      sub: [
         {
-          name: '杭州',
+          label: '杭州',
           value: 'hangzhou',
-          children: [
-            {name: '上城', value: 'shangcheng'},
-            {name: '下城', value: 'xiacheng'},
-            {name: '江干', value: 'jianggan'},
+          sub: [
+            {label: '上城', value: 'shangcheng'},
+            {label: '下城', value: 'xiacheng'},
+            {label: '江干', value: 'jianggan'},
           ]
         },
         {
-          name: '嘉兴',
+          label: '嘉兴',
           value: 'anhui',
-          children: [
-            {name: '南湖', value: 'nanhu'},
-            {name: '秀洲', value: 'xiuzhou'},
-            {name: '嘉善', value: 'jiashan'},
+          sub: [
+            {label: '南湖', value: 'nanhu'},
+            {label: '秀洲', value: 'xiuzhou'},
+            {label: '嘉善', value: 'jiashan'},
           ]
         },
       ]
     }, {
-      name: '福建',
+      label: '福建',
       value: 'fujian',
-      children: [
+      sub: [
         {
-          name: '福州',
+          label: '福州',
           value: 'fuzhou',
-          children: [
-            {name: '鼓楼', value: 'gulou'},
-            {name: '台江', value: 'taijiang'},
-            {name: '仓山', value: 'cangshan'},
+          sub: [
+            {label: '鼓楼', value: 'gulou'},
+            {label: '台江', value: 'taijiang'},
+            {label: '仓山', value: 'cangshan'},
           ]
         },
       ]
     }, {
-      name: '安徽',
+      label: '安徽',
       value: 'anhui',
-      children: [{
-        name: '合肥',
+      sub: [{
+        label: '合肥',
         value: 'hefei',
-        children: [{
-          name: '瑶海', value: 'yaohai'
+        sub: [{
+          label: '瑶海', value: 'yaohai'
         }, {
-          name: '庐阳', value: 'luyang'
+          label: '庐阳', value: 'luyang'
         }]
       }]
     }]
