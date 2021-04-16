@@ -1,11 +1,16 @@
+document.addEventListener('click', (e) => {
+  let {target} = e
+  callbacks.forEach(item => {
+    let {el, callback} = item
+    if (el !== target && !el.contains(target)) {
+      callback()
+    }
+  })
+  
+})
+let callbacks = []
 export default {
   bind: function (el, bindings) {
-    document.addEventListener('click', (e) => {
-      if (el == e.target || el.contains(e.target)) {
-        console.log('inside');
-        return
-      }
-      bindings.value()
-    })
+    callbacks.push({el, callback: bindings.value})
   }
 }
