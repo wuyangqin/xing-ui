@@ -1,5 +1,5 @@
 <template>
-  <div class="xx-popover-wrapper" ref="popover">
+  <div class="xx-popover-wrapper" ref="popover" v-click-outside="contentClose">
     <div class="xx-popover-content" :class="contentClasses" ref="content" v-if="visible" @click.stop>
       <slot name="content" :contentClose="contentClose"></slot>
     </div>
@@ -10,9 +10,13 @@
 </template>
 
 <script>
+import ClickOutside from '../directives/click-outside.js';
 
 export default {
   name: 'XPopover',
+  directives:{
+    ClickOutside
+  },
   props: {
     placement: {
       type: String,
@@ -97,11 +101,6 @@ export default {
       content.style.top = positions[placement].top + window.scrollY + 'px'
       content.style.left = positions[placement].left + window.scrollX + 'px'
     },
-    toggleHandler(e) {
-      if (this.$refs.popover !== e.target && !this.$refs.popover.contains(e.target)) {
-        this.contentClose()
-      }
-    },
     contentOpen() {
       let {trigger} = this
       this.visible = true
@@ -110,16 +109,10 @@ export default {
       }
       this.$nextTick(() => {
         this.positionContent()
-        if (trigger === 'click') {
-          document.addEventListener('click', this.toggleHandler)
-        }
       })
     },
     contentClose() {
       this.visible = false
-      if (this.trigger === 'click') {
-        document.removeEventListener('click', this.toggleHandler)
-      }
       this.$emit('onClose')
     },
     onHover() {
