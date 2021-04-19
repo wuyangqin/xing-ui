@@ -26,8 +26,8 @@ npm i --save xing-ui-1-1
 
 3. 引入xing-ui
 ```js
-import { XButton, XButtonGroup, XIcon } from 'xing-ui-1-1'
-import 'xing-ui-1-1/dist/index.css'
+import { XButton, XButtonGroup, XIcon } from 'xing-ui'
+import 'xing-ui/dist/xing.css'
 
 export default {
  components:{
@@ -35,10 +35,3 @@ export default {
  }
 }
 ```
-
-## 提问
-
-## 变更记录
-
-## 联系方式
-

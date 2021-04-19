@@ -7,7 +7,7 @@ title: 快速上手
 
 ### 安装
 
-<pre-code code="npm install xing-ui-1-1 " type="sh"></pre-code>
+<pre-code code="npm install xing-ui " type="sh"></pre-code>
 
 ### 开始使用
 #### 添加 CSS 样式
@@ -17,14 +17,14 @@ title: 快速上手
 
 #### 按需引入
 
-<pre-code code="import { Button } from 'xing-ui-1-1'
-import 'xing-ui-1-1/dist/index.css'
+<pre-code code="import { XButton } from 'xing-ui'
+import 'xing-ui/dist/xing.css'
 import Vue from 'vue'
                  
 new Vue({
   el: '#app',
   components: {
-    'x-button':Button
+    XButton
   }
 })"
    type="javascript"></pre-code>
