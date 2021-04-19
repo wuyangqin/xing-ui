@@ -37,8 +37,9 @@ describe('Row', () => {
         attachTo: div,
         propsData: {align: 'right'}
       })
-      const element = wrapper.vm.$el
-      expect(getComputedStyle(element).justifyContent).to.equal('flex-end')
+      // const element = wrapper.vm.$el
+      expect(wrapper.classes('align-right')).to.eq(true)
+      // expect(getComputedStyle(element).justifyContent).to.equal('flex-end')
     })
   })
   

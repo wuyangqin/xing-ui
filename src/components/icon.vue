@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import '../svg.js'
 
 export default {
   props: {
@@ -18,7 +19,9 @@ export default {
     }
   },
   mounted () {
-    import('../svg.js').then(icon => {})
+    // import('../svg.js').then(icon => {
+    //   console.log(icon);
+    // })
   }
 }
 </script>

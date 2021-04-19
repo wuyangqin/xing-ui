@@ -25,19 +25,24 @@ describe('Cascader', () => {
       })
       expect(wrapper.vm.selectedLabels).to.eq('浙江 / 杭州 / 下城')
     })
-    it('可以设置height', async () => {
+    it('可以设置height', (done) => {
       wrapper = mount(Cascader, {
         propsData: {
           height: 200,
           source
         }
       })
-      wrapper.find('.xx-popover-trigger').trigger('click')
-      await wrapper.vm.$nextTick()
-      const cascaderItem = document.querySelector('.xx-cascader-item')
-      expect(cascaderItem.style.height).to.eq('200px')
+      const vm = wrapper.vm
+      vm.$nextTick(() => {
+        wrapper.find('.xx-popover-trigger').trigger('click')
+        vm.$nextTick(() => {
+          const cascaderItem = document.querySelector('.xx-cascader-item')
+          expect(cascaderItem.style.height).to.eq('200px')
+          done()
+        })
+      })
     })
-    it('lazyLoad方法被正常触发', async () => {
+    it('lazyLoad方法被正常触发', (done) => {
       const callback = sinon.fake()
       wrapper = mount(Cascader, {
         propsData: {
@@ -45,10 +50,15 @@ describe('Cascader', () => {
           lazyLoad: callback
         }
       })
-      wrapper.find('.xx-popover-trigger').trigger('click')
-      await wrapper.vm.$nextTick()
-      wrapper.vm.$refs.cascaderNodes.$emit('select', [{label: 'changsha'}])
-      expect(callback).to.have.been.called
+      const vm = wrapper.vm
+      vm.$nextTick(() => {
+        wrapper.find('.xx-popover-trigger').trigger('click')
+        vm.$nextTick(() => {
+          wrapper.vm.$refs.cascaderNodes.$emit('select', [{label: 'changsha'}])
+          expect(callback).to.have.been.called
+          done()
+        })
+      })
     })
     
     it('可以设置clearable, 点击清除按钮触发clear事件', () => {
@@ -68,9 +78,9 @@ describe('Cascader', () => {
       expect(vm.selectedLabels).to.eq('')
       expect(callback).to.have.been.called
     })
-    describe('options',() => {
-      let value=['hunan', 'changsha']
-      it('可以设置label',() => {
+    describe('options', () => {
+      let value = ['hunan', 'changsha']
+      it('可以设置label', () => {
         const source = [{
           name: '湖南',
           value: 'hunan',
@@ -85,12 +95,12 @@ describe('Cascader', () => {
           propsData: {
             value,
             source,
-            options:{ label:'name' }
+            options: {label: 'name'}
           }
         })
         expect(wrapper.vm.selectedLabels).to.eq('湖南 / 长沙')
       })
-      it('可以设置children',()=>{
+      it('可以设置children', () => {
         const source = [{
           label: '湖南',
           value: 'hunan',
@@ -105,12 +115,12 @@ describe('Cascader', () => {
           propsData: {
             value,
             source,
-            options:{ children:'subNode' }
+            options: {children: 'subNode'}
           }
         })
         expect(wrapper.vm.selectedLabels).to.eq('湖南 / 长沙')
       })
-      it('可以设置value',()=>{
+      it('可以设置value', () => {
         const source = [{
           label: '湖南',
           id: 'hunan',
@@ -125,16 +135,16 @@ describe('Cascader', () => {
           propsData: {
             value,
             source,
-            options:{ value:'id' }
+            options: {value: 'id'}
           }
         })
         expect(wrapper.vm.selectedLabels).to.eq('湖南 / 长沙')
       })
-      it('可以设置isLeaf',async()=>{
+      it('可以设置isLeaf', (done) => {
         const source = [{
           label: '湖南',
           value: 'hunan',
-          leaf:true,
+          leaf: true,
           children: [
             {
               label: '长沙',
@@ -144,41 +154,50 @@ describe('Cascader', () => {
         }]
         wrapper = mount(Cascader, {
           propsData: {
-            value:[],
+            value: [],
             source,
-            options:{ isLeaf:'leaf' }
+            options: {isLeaf: 'leaf'}
           }
         })
         const {vm} = wrapper
-        wrapper.find('.xx-popover-trigger').trigger('click')
-        await vm.$nextTick()
-        wrapper.find('.label').trigger('click')
-        expect(wrapper.vm.selectedLabels).to.eq('湖南')
+        vm.$nextTick(() => {
+          wrapper.find('.xx-popover-trigger').trigger('click')
+          vm.$nextTick(() => {
+            wrapper.find('.label').trigger('click')
+            expect(wrapper.vm.selectedLabels).to.eq('湖南')
+            done()
+          })
+        })
       })
     })
-  })
-  describe('Events', () => {
-    let wrapper
-    afterEach(() => {
-      wrapper.destroy()
-    })
-    it('选中最后一个叶子节点才触发change事件', async () => {
-      const callback = sinon.fake()
-      wrapper = mount(Cascader, {
-        propsData: {
-          source
-        }
+    describe('Events', () => {
+      let wrapper
+      afterEach(() => {
+        wrapper.destroy()
       })
-      const {vm} = wrapper
-      vm.$on('change', callback)
-      wrapper.find('.xx-popover-trigger').trigger('click')
-      await vm.$nextTick()
-      wrapper.find('.label').trigger('click')
-      expect(callback).to.have.not.been.called
-      await vm.$nextTick()
-      wrapper.find('.xx-cascader-item-right .label').trigger('click')
-      expect(callback).to.have.been.called
-      expect(vm.selectedLabels).to.eq('湖南 / 长沙')
+      it('选中最后一个叶子节点才触发change事件', (done) => {
+        const callback = sinon.fake()
+        wrapper = mount(Cascader, {
+          propsData: {
+            source
+          }
+        })
+        const {vm} = wrapper
+        vm.$on('change', callback)
+        vm.$nextTick(() => {
+          wrapper.find('.xx-popover-trigger').trigger('click')
+          vm.$nextTick(() => {
+            wrapper.find('.label').trigger('click')
+            expect(callback).to.have.not.been.called
+            vm.$nextTick(() => {
+              wrapper.find('.xx-cascader-item-right .label').trigger('click')
+              expect(callback).to.have.been.called
+              expect(vm.selectedLabels).to.eq('湖南 / 长沙')
+              done()
+            })
+          })
+        })
+      })
     })
   })
 })

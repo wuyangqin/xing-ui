@@ -33,7 +33,7 @@ describe('Button', () => {
     expect(useElements[0].getAttribute('xlink:href')).to.equal('#x-loading')
     wrapper.destroy()
   })
-  it('icon 默认的 order 是 1', () => {
+  it('icon 默认的位置是left', () => {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const wrapper = mount(Button, {
@@ -42,13 +42,11 @@ describe('Button', () => {
         icon: 'settings',
       }
     })
-    const vm = wrapper.vm
-    const icon = vm.$el.querySelector('svg')
-    expect(getComputedStyle(icon).order).to.eq('1')
+    expect(wrapper.classes('icon-left')).to.equal(true)
     div.remove()
     wrapper.destroy()
   })
-  it('设置 iconPosition 可以改变 order', () => {
+  it('设置 iconPosition 可以改变 icon 位置', () => {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const wrapper = mount(Button, {
@@ -58,9 +56,7 @@ describe('Button', () => {
         iconPosition: 'right'
       }
     })
-    const vm = wrapper.vm
-    const icon = vm.$el.querySelector('svg')
-    expect(getComputedStyle(icon).order).to.eq('2')
+    expect(wrapper.classes('icon-right')).to.equal(true)
     div.remove()
     wrapper.destroy()
   })
